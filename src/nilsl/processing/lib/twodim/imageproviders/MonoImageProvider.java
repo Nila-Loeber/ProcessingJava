@@ -4,7 +4,7 @@ import nilsl.processing.lib.img.NImage;
 import processing.core.PGraphics;
 
 
-public class MonoImageProvider implements ImageProvider {
+public class MonoImageProvider extends ImageProvider {
 
 	NImage image;
 	

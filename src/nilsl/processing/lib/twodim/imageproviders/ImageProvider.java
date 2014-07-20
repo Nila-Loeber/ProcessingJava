@@ -3,9 +3,9 @@ package nilsl.processing.lib.twodim.imageproviders;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
-public interface ImageProvider
+public abstract class ImageProvider
 {
-  void getNextImage(PGraphics buffer);
-  boolean hasNext();
+  public abstract void getNextImage(PGraphics buffer);
+  public abstract boolean hasNext();
 
 }

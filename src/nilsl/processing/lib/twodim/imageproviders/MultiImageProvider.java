@@ -8,7 +8,7 @@ import nilsl.processing.lib.img.NImage;
 import processing.core.PGraphics;
 
 
-public class MultiImageProvider implements ImageProvider, Resetable {
+public class MultiImageProvider extends ImageProvider implements Resetable {
 
 	List<NImage> images;
 	Iterator<NImage> iterator;

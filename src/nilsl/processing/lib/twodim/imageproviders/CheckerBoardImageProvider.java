@@ -4,7 +4,7 @@ package nilsl.processing.lib.twodim.imageproviders;
 import processing.core.PGraphics;
 
 
-public class CheckerBoardImageProvider implements ImageProvider {
+public class CheckerBoardImageProvider extends ImageProvider {
 
 
 	private int color;
