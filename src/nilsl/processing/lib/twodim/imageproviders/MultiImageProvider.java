@@ -8,7 +8,7 @@ import nilsl.processing.lib.img.NImage;
 import processing.core.PGraphics;
 
 
-public class MultiImageProvider implements ImageProvider {
+public class MultiImageProvider implements ImageProvider, Resetable {
 
 	List<NImage> images;
 	Iterator<NImage> iterator;
@@ -25,9 +25,8 @@ public class MultiImageProvider implements ImageProvider {
 			{
 				System.out.println(e.getMessage());
 			}
-		}
-		
-		iterator = images.iterator();
+		}	
+		reset();
 	}
 	
 	@Override
@@ -40,6 +39,11 @@ public class MultiImageProvider implements ImageProvider {
 	@Override
 	public boolean hasNext() {
 		return iterator.hasNext();
+	}
+
+	@Override
+	public void reset() {
+		iterator = images.iterator();
 	}
 
 }

@@ -6,5 +6,6 @@ import processing.core.PImage;
 public interface ImageProvider
 {
   void getNextImage(PGraphics buffer);
-  boolean hasNext(); 
+  boolean hasNext();
+
 }
