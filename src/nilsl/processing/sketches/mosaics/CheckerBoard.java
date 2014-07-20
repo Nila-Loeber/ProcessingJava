@@ -1,5 +1,7 @@
-package nilsl.processing.sketches.checkerboard;
+package nilsl.processing.sketches.mosaics;
 
+import nilsl.processing.lib.twodim.imageproviders.CheckerBoardImageProvider;
+import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import processing.core.*;
 
 public class CheckerBoard extends PApplet {
@@ -14,7 +16,7 @@ public class CheckerBoard extends PApplet {
 
 	public void draw()
 	{
-	DefaultMosaicDrawer md = new DefaultMosaicDrawer(2,2,100,100);
+	DefaultMosaicDrawer md = new DefaultMosaicDrawer(3,3,100,100);
 
 	md.imageProvider = new CheckerBoardImageProvider();
 	md.parentApplet=this;

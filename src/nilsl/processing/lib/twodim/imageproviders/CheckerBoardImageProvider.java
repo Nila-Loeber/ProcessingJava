@@ -1,4 +1,4 @@
-package nilsl.processing.sketches.checkerboard;
+package nilsl.processing.lib.twodim.imageproviders;
 
 
 import processing.core.PGraphics;
@@ -12,7 +12,7 @@ public class CheckerBoardImageProvider implements ImageProvider {
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public CheckerBoardImageProvider() {

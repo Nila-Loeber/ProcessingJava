@@ -1,4 +1,4 @@
-package nilsl.processing.lib.twodim;
+package nilsl.processing.lib.twodim.counters;
 
 public interface Counter2d {
 

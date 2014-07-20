@@ -1,4 +1,5 @@
-package nilsl.processing.lib.twodim;
+package nilsl.processing.lib.twodim.counters;
+
 
 public class DefaultCounter2d implements Counter2d {
 
