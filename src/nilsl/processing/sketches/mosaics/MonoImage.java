@@ -1,6 +1,5 @@
 package nilsl.processing.sketches.mosaics;
 
-import nilsl.processing.lib.twodim.imageproviders.CheckerBoardImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.MonoImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import processing.core.*;

@@ -1,13 +1,9 @@
 package nilsl.processing.lib.twodim.mosaicdrawers;
 
-import processing.core.PApplet;
 import nilsl.processing.lib.twodim.imageproviders.Resetable;
 import processing.core.PGraphics;
-import processing.core.PImage;
-import nilsl.processing.lib.twodim.*;
 import nilsl.processing.lib.twodim.counters.Counter2d;
 import nilsl.processing.lib.twodim.counters.DefaultCounter2d;
-import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
 
 public class DefaultMosaicDrawer extends MosaicDrawer2d implements Zoomable {
 

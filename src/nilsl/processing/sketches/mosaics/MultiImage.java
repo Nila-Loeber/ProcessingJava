@@ -4,26 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nilsl.processing.lib.applet.FilesaveApplet;
-import nilsl.processing.lib.img.filters.Filter;
+import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.RandomizeFilter;
+import nilsl.processing.lib.img.filters.SwapFilter;
 import nilsl.processing.lib.io.FileRepo;
-import nilsl.processing.lib.twodim.imageproviders.CheckerBoardImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
-import nilsl.processing.lib.twodim.imageproviders.MonoImageProvider;
-import nilsl.processing.lib.twodim.imageproviders.MultiImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicDrawer2d;
-import processing.core.*;
 import nilsl.processing.lib.twodim.mosaicdrawers.Zoomable;
 
 public class MultiImage extends FilesaveApplet {
 
 	private static final long serialVersionUID = 1L;
 	private static final int imgSize = 200;
-	private static final int xdim = 3;
-	private static final int ydim = 3;
+	private static final int xdim = 5;
+	private static final int ydim = 5;
 
 	private FilterableMultiImageProvider imgProvider;
+	Integer oldPos=null;
+	Integer newPos=null;
 	
 	public void setup() {
 		size(xdim * imgSize, ydim * imgSize);
@@ -34,10 +33,8 @@ public class MultiImage extends FilesaveApplet {
 
 		System.out.println("Files found: " + files.size());
 
-		Filter randomizeFilter = new RandomizeFilter();
-		List<Filter> filters = new ArrayList<Filter>();
-		filters.add(randomizeFilter);
-		imgProvider = new FilterableMultiImageProvider(files.subList(0, xdim * ydim),filters);
+		List<FilterCommand> filters = new ArrayList<FilterCommand>();
+		imgProvider = new FilterableMultiImageProvider(files.subList(0, 30),filters);
 		
 		md.imageProvider = imgProvider;
 		md.parentApplet = this;
@@ -51,6 +48,44 @@ public class MultiImage extends FilesaveApplet {
 		md.draw();
 	}
 
+	
+	public void handleSwap()
+	{
+		if (oldPos==null)
+		{
+			oldPos=PickUpSwapImage(mouseX,mouseY);
+		}
+		else
+		{
+			newPos=PickUpSwapImage(mouseX,mouseY);
+			imgProvider.filters.add(new SwapFilter(oldPos,newPos));
+			imgProvider.ApplyFilters();
+			newPos=null;
+			oldPos=null;
+		}
+	}
+	
+	
+	
+	int getCurrentPos(int x, int y)
+	{
+	  return y*xdim + x;
+	}
+	
+	int PickUpSwapImage(int x, int y)
+	{
+	  int pickupImgXPos = x/imgSize;
+	  int pickupImgYPos = y/imgSize;
+	  int pickupListPos = getCurrentPos(pickupImgXPos, pickupImgYPos);
+	  return pickupListPos;
+	}
+	
+	
+	public void mouseClicked()
+	{
+		handleSwap();
+	}
+	
 	@Override
 	public void keyPressed() {
 		if (key == '+') {
@@ -60,10 +95,6 @@ public class MultiImage extends FilesaveApplet {
 		if (key == '-') {
 			background(0);
 			((Zoomable) md).unzoom();
-		}
-		if (key == 'r') {
-			background(0);
-			imgProvider.ApplyFilters();
 		}
 		super.keyPressed();
 	}
