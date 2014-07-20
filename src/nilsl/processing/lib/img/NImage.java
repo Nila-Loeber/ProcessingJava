@@ -6,7 +6,7 @@ import processing.core.*;
 public class NImage implements Comparable<NImage> 
 	{
 	  public PImage image;
-	  String imageFilename;
+	  public String imageFilename;
 	  int[] histogramHue=new int[256];
 	  int[] histogramSat=new int[256];
 	  int[] histogramBri=new int[256];

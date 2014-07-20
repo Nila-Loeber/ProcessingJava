@@ -5,7 +5,7 @@ import java.util.List;
 
 import nilsl.processing.lib.applet.FilesaveApplet;
 import nilsl.processing.lib.img.filters.FilterCommand;
-import nilsl.processing.lib.img.filters.RandomizeFilter;
+import nilsl.processing.lib.img.filters.LabelFilter;
 import nilsl.processing.lib.img.filters.SwapFilter;
 import nilsl.processing.lib.io.FileRepo;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
@@ -29,12 +29,16 @@ public class MultiImage extends FilesaveApplet {
 
 		md = new DefaultMosaicDrawer(xdim, ydim, imgSize, imgSize);
 
-		List<String> files = FileRepo.listFiles("c:\\data\\labels");
+		List<String> files = FileRepo.listFiles("c:\\data\\unsorted");
 
 		System.out.println("Files found: " + files.size());
 
+		FilterCommand labelFilter = new LabelFilter();
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();
-		imgProvider = new FilterableMultiImageProvider(files.subList(0, 30),filters);
+		filters.add(labelFilter);
+		imgProvider = new FilterableMultiImageProvider(files.subList(0,50),filters);
+		//imgProvider = new FilterableMultiImageProvider(files,filters);
+		imgProvider.ApplyFilters();
 		
 		md.imageProvider = imgProvider;
 		md.parentApplet = this;

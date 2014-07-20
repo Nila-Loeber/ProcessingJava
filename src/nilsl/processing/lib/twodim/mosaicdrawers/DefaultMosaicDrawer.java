@@ -36,7 +36,7 @@ public class DefaultMosaicDrawer extends MosaicDrawer2d implements Zoomable {
 			parentApplet.image(pg,counter.getCurX()*imgXSize, counter.getCurY()*imgYSize);
 			counter.inc();
 		}
-		while (!counter.eof());
+		while (!counter.eof() && imageProvider.hasNext());
 		
 		
 		
