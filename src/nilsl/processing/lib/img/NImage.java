@@ -1,21 +1,35 @@
 package nilsl.processing.lib.img;
 
+import java.io.Serializable;
+
 import nilsl.processing.lib.processingshims.PAppletShim;
 import processing.core.*;
 
-public class NImage implements Comparable<NImage> 
+public class NImage implements Comparable<NImage>, Serializable
 	{
-	  public PImage image;
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	  private transient PImage image;
 	  public String imageFilename;
 	  int[] histogramHue=new int[256];
 	  int[] histogramSat=new int[256];
 	  int[] histogramBri=new int[256];
 	  int dominantHue;
 
+	  public PImage GetImage()
+	  {
+		  if (image==null)
+		  {
+			  PImage img = PAppletShim.getApplet().loadImage(this.imageFilename);
+			    image=img;
+		  }
+		  return image;
+	  }
+	  
 	  public NImage(String filename)
 	  {
-	    PImage img = PAppletShim.getApplet().loadImage(filename);
-	    image=img;
 	    imageFilename = filename;
 	    buildHistograms();
 	    dominantHue = calcDominantHue_MaxValue();
@@ -23,9 +37,9 @@ public class NImage implements Comparable<NImage>
 
 	  void buildHistograms()
 	  {
-	    for (int i=0; i<image.pixels.length; i++)
+	    for (int i=0; i<GetImage().pixels.length; i++)
 	    {
-	      int pixel=image.pixels[i];
+	      int pixel=GetImage().pixels[i];
 	      int hue = (int)(PAppletShim.getApplet().hue(pixel));
 	      histogramHue[hue]++;
 	      int sat = (int)(PAppletShim.getApplet().saturation(pixel));

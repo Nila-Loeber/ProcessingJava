@@ -16,7 +16,7 @@ public class MonoImageProvider extends ImageProvider {
 	@Override
 	public void getNextImage(PGraphics buffer) {
 		buffer.beginDraw();
-		buffer.image(image.image,0,0,buffer.width,buffer.height);
+		buffer.image(image.GetImage(),0,0,buffer.width,buffer.height);
 		buffer.endDraw();
 	}
 

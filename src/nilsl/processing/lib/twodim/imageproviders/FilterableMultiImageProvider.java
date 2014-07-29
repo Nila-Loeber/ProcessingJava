@@ -1,5 +1,6 @@
 package nilsl.processing.lib.twodim.imageproviders;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +16,12 @@ public class FilterableMultiImageProvider extends MultiImageProvider {
 		this.filters = filters;
 	}
 
+	public FilterableMultiImageProvider(String dataFile,
+			List<FilterCommand> filters) throws ClassNotFoundException, IOException {
+		super(dataFile);
+		this.filters = filters;
+	}
+	
 	public void ApplyFilters() {
 		for(Iterator<FilterCommand> i = filters.iterator(); i.hasNext();) {
 			FilterCommand filter = i.next();

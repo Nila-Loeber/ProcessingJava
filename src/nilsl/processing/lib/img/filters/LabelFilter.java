@@ -57,7 +57,7 @@ public class LabelFilter implements FilterCommand {
 		boolean isLabel = true;
 
 		List<Integer> samples = new ArrayList<Integer>();
-		PImage pimg = nimage.image;
+		PImage pimg = nimage.GetImage();
 		int imgWidth = pimg.width;
 		int imgHeight = pimg.height;
 		samples.add(takeRectangularSample(pimg.get(samplingDistance,

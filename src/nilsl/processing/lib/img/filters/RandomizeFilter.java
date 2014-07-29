@@ -7,6 +7,13 @@ import nilsl.processing.lib.img.NImage;
 
 public class RandomizeFilter implements FilterCommand {
 
+	boolean removeAfterApply;
+	
+	public RandomizeFilter(boolean removeAfterApply)
+	{
+		this.removeAfterApply=removeAfterApply;
+	}
+	
 	@Override
 	public void apply(List<NImage> images) {
 		Collections.shuffle(images);
@@ -14,7 +21,7 @@ public class RandomizeFilter implements FilterCommand {
 
 	@Override
 	public boolean removeAfterApply() {
-		return false;
+		return removeAfterApply;
 	}
 
 }
