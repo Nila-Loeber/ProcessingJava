@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import processing.core.PGraphics;
+import processing.core.PImage;
 import nilsl.processing.lib.applet.mosaic.SwapperApplet;
+import nilsl.processing.lib.img.ImageEnhancer;
+import nilsl.processing.lib.img.ImageOverlayEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
 import nilsl.processing.lib.img.filters.OrderByHueFilter;
@@ -25,17 +29,27 @@ public class Compost1 extends SwapperApplet {
 	public void setup() {
 		mosInfo.imgSizeX = 1224/16;
 		mosInfo.imgSizeY = 1632/16;
-		mosInfo.xdim = 19;
-		mosInfo.ydim = 19;
+		mosInfo.xdim = 12;
+		mosInfo.ydim = 6;
 		
 		size(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
 
+		
+		PImage overlayImage = loadImage("c:\\data\\compost\\blackborder.png");
+		ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
+		
+		
 		md = new DefaultMosaicDrawer(mosInfo);
+		
+		md.imageEnhancers.add(blackSquare);
 
 		//FilterCommand labelFilter = new RandomizeFilter(true);
 		FilterCommand hueFilter = new OrderByBriFilter();
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();
 		filters.add(hueFilter);
+		
+		
+		
 		try {
 			imgProvider = new FilterableMultiImageProvider("c:\\data\\compost\\verysmall\\images.dat",filters);
 		} catch (ClassNotFoundException | IOException e) {
@@ -49,7 +63,7 @@ public class Compost1 extends SwapperApplet {
 
 	}
 
-	MosaicDrawer2d md;
+	DefaultMosaicDrawer md;
 
 	public void draw() {
 

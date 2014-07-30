@@ -1,5 +1,9 @@
 package nilsl.processing.lib.twodim.mosaicdrawers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import nilsl.processing.lib.img.ImageEnhancer;
 import nilsl.processing.lib.twodim.imageproviders.Resetable;
 import processing.core.PGraphics;
 import nilsl.processing.lib.twodim.counters.Counter2d;
@@ -13,6 +17,7 @@ public class DefaultMosaicDrawer extends MosaicDrawer2d implements Zoomable {
 	private int maxX;
 	private int maxY;
 	
+	public final List<ImageEnhancer> imageEnhancers=new ArrayList<ImageEnhancer>();
 
 	private void ResetCounter()
 	{
@@ -27,12 +32,21 @@ public class DefaultMosaicDrawer extends MosaicDrawer2d implements Zoomable {
 		this.maxY=mosInfo.ydim;
 	}
 
+	
+	
 	@Override
 	public void draw() {
 		ResetCounter();
 		do{
 			PGraphics pg = parentApplet.createGraphics(imgXSize, imgYSize);
 			imageProvider.getNextImage(pg);
+			if (imageEnhancers.size()>0)
+			{
+				for(ImageEnhancer enhancer : imageEnhancers)
+				{
+					enhancer.Enhance(pg);
+				}
+			}
 			parentApplet.image(pg,counter.getCurX()*imgXSize, counter.getCurY()*imgYSize);
 			counter.inc();
 		}
