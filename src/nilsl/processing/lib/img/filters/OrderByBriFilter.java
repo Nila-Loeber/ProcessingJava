@@ -2,9 +2,9 @@ package nilsl.processing.lib.img.filters;
 
 import java.util.List;
 
-import nilsl.processing.lib.img.BriComparator;
-import nilsl.processing.lib.img.HueComparator;
 import nilsl.processing.lib.img.NImage;
+import nilsl.processing.lib.img.comparators.BriComparator;
+import nilsl.processing.lib.img.comparators.HueComparator;
 
 public class OrderByBriFilter implements FilterCommand {
 

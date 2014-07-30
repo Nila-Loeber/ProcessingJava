@@ -2,8 +2,8 @@ package nilsl.processing.lib.img.filters;
 
 import java.util.List;
 
-import nilsl.processing.lib.img.HueComparator;
 import nilsl.processing.lib.img.NImage;
+import nilsl.processing.lib.img.comparators.HueComparator;
 
 public class OrderByHueFilter implements FilterCommand {
 

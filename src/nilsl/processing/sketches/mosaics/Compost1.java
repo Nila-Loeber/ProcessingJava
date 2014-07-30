@@ -7,11 +7,13 @@ import java.util.List;
 import processing.core.PGraphics;
 import processing.core.PImage;
 import nilsl.processing.lib.applet.mosaic.SwapperApplet;
-import nilsl.processing.lib.img.ImageEnhancer;
-import nilsl.processing.lib.img.ImageOverlayEnhancer;
+import nilsl.processing.lib.img.enhancers.ImageEnhancer;
+import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
+import nilsl.processing.lib.img.enhancers.ZoomEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
 import nilsl.processing.lib.img.filters.OrderByHueFilter;
+import nilsl.processing.lib.img.filters.RandomizeFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicDrawer2d;
@@ -27,26 +29,27 @@ public class Compost1 extends SwapperApplet {
 
 	
 	public void setup() {
-		mosInfo.imgSizeX = 1224/16;
-		mosInfo.imgSizeY = 1632/16;
-		mosInfo.xdim = 12;
-		mosInfo.ydim = 6;
+		mosInfo.imgSizeX = 245/2;
+		mosInfo.imgSizeY = 326/2;
+		mosInfo.xdim = 13;
+		mosInfo.ydim = 7;
 		
 		size(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
 
 		
-		PImage overlayImage = loadImage("c:\\data\\compost\\blackborder.png");
-		ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
-		
+		//PImage overlayImage = loadImage("c:\\data\\compost\\blackborder.png");
+		//ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
+		ImageEnhancer zoom = new ZoomEnhancer(30,40,60);
 		
 		md = new DefaultMosaicDrawer(mosInfo);
 		
-		md.imageEnhancers.add(blackSquare);
+		md.imageEnhancers.add(zoom);
 
-		//FilterCommand labelFilter = new RandomizeFilter(true);
-		FilterCommand hueFilter = new OrderByBriFilter();
+		FilterCommand randFilter = new RandomizeFilter(true);
+//		FilterCommand hueFilter = new OrderByBriFilter();
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();
-		filters.add(hueFilter);
+//		filters.add(hueFilter);
+		filters.add(randFilter);
 		
 		
 		

@@ -3,7 +3,7 @@ package nilsl.processing.lib.twodim.mosaicdrawers;
 import java.util.ArrayList;
 import java.util.List;
 
-import nilsl.processing.lib.img.ImageEnhancer;
+import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import nilsl.processing.lib.twodim.imageproviders.Resetable;
 import processing.core.PGraphics;
 import nilsl.processing.lib.twodim.counters.Counter2d;

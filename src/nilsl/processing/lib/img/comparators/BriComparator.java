@@ -1,6 +1,8 @@
-package nilsl.processing.lib.img;
+package nilsl.processing.lib.img.comparators;
 
 import java.util.Comparator;
+
+import nilsl.processing.lib.img.NImage;
 
 public class BriComparator implements Comparator<NImage>{
 

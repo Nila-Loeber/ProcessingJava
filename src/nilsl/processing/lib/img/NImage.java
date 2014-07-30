@@ -16,9 +16,9 @@ public class NImage implements Serializable
 	  int[] histogramHue=new int[256];
 	  int[] histogramSat=new int[256];
 	  int[] histogramBri=new int[256];
-	  int dominantHue;
-	  int dominantSat;
-	  int dominantBri;
+	  public int dominantHue;
+	  public int dominantSat;
+	  public int dominantBri;
 
 	  public PImage GetImage()
 	  {

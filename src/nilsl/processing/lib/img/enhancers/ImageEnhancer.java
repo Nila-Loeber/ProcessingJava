@@ -1,4 +1,4 @@
-package nilsl.processing.lib.img;
+package nilsl.processing.lib.img.enhancers;
 
 import processing.core.PGraphics;
 
