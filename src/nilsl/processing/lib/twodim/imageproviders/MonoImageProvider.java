@@ -4,7 +4,7 @@ import nilsl.processing.lib.img.NImage;
 import processing.core.PGraphics;
 
 
-public class MonoImageProvider extends ImageProvider {
+public class MonoImageProvider extends ImageProvider implements Resetable {
 
 	NImage image;
 	
@@ -25,4 +25,10 @@ public class MonoImageProvider extends ImageProvider {
 		return true;
 	}
 
+	@Override
+	public void reset() {
+	
+	}
+
+	
 }

@@ -5,18 +5,20 @@ import java.io.Serializable;
 import nilsl.processing.lib.processingshims.PAppletShim;
 import processing.core.*;
 
-public class NImage implements Comparable<NImage>, Serializable
+public class NImage implements Serializable
 	{
 	  /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	  private transient PImage image;
 	  public String imageFilename;
 	  int[] histogramHue=new int[256];
 	  int[] histogramSat=new int[256];
 	  int[] histogramBri=new int[256];
 	  int dominantHue;
+	  int dominantSat;
+	  int dominantBri;
 
 	  public PImage GetImage()
 	  {
@@ -32,7 +34,9 @@ public class NImage implements Comparable<NImage>, Serializable
 	  {
 	    imageFilename = filename;
 	    buildHistograms();
-	    dominantHue = calcDominantHue_MaxValue();
+	    dominantHue = calcDominantValue(histogramHue);
+	    dominantSat = calcDominantValue(histogramSat);
+	    dominantBri = calcDominantValue(histogramBri);
 	  }
 
 	  void buildHistograms()
@@ -49,26 +53,15 @@ public class NImage implements Comparable<NImage>, Serializable
 	    }
 	  }
 	  
-	  public int compareTo(NImage o)
+	  private int calcDominantValue(int[] histogram)
 	  {
-	    NImage other=o;
-	    if (other.dominantHue>dominantHue)  
-	      return -1;
-	    if (other.dominantHue==dominantHue)
-	      return 0;
-	    else
-	      return 1;
-	  }
-
-	  private int calcDominantHue_MaxValue()
-	  {
-		int maxCount = PApplet.max(histogramHue);
-	    int dominantHue=0;
-	    for (int i=0; i<histogramHue.length; i++)
+		int maxCount = PApplet.max(histogram);
+	    int dominantVal=0;
+	    for (int i=0; i<histogram.length; i++)
 	    {
-	      if (histogramHue[i]==maxCount) dominantHue = i;
+	      if (histogram[i]==maxCount) dominantVal = i;
 	    }
-	    return dominantHue;
+	    return dominantVal;
 	  }
 
 	

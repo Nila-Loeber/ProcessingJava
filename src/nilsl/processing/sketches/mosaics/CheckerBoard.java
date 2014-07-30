@@ -2,12 +2,14 @@ package nilsl.processing.sketches.mosaics;
 
 import nilsl.processing.lib.twodim.imageproviders.CheckerBoardImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
+import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
 import processing.core.*;
 
 public class CheckerBoard extends PApplet {
 
 	private static final long serialVersionUID = 1L;
-
+	private MosaicInfo mosInfo = new MosaicInfo();
+	
 	public void setup() {
 		size(800, 600);
 		noLoop();
@@ -16,7 +18,12 @@ public class CheckerBoard extends PApplet {
 
 	public void draw()
 	{
-	DefaultMosaicDrawer md = new DefaultMosaicDrawer(3,3,100,100);
+		mosInfo.imgSizeX = 100;
+		mosInfo.imgSizeY = 100;
+		mosInfo.xdim = 3;
+		mosInfo.ydim = 3;
+		
+	DefaultMosaicDrawer md = new DefaultMosaicDrawer(mosInfo);
 
 	md.imageProvider = new CheckerBoardImageProvider();
 	md.parentApplet=this;

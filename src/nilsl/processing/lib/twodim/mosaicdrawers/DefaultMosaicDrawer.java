@@ -20,11 +20,11 @@ public class DefaultMosaicDrawer extends MosaicDrawer2d implements Zoomable {
 		((Resetable)imageProvider).reset();
 	}
 	
-	public DefaultMosaicDrawer(int maxX, int maxY, int imgXSize, int imgYSize) {
-		this.imgXSize=imgXSize;
-		this.imgYSize=imgYSize;
-		this.maxX=maxX;
-		this.maxY=maxY;
+	public DefaultMosaicDrawer(MosaicInfo mosInfo) {
+		this.imgXSize=mosInfo.imgSizeX;
+		this.imgYSize=mosInfo.imgSizeY;
+		this.maxX=mosInfo.xdim;
+		this.maxY=mosInfo.ydim;
 	}
 
 	@Override
