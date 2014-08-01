@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import processing.core.PImage;
+import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
+import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
+import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.enhancers.ZoomEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
@@ -21,20 +25,26 @@ public class Compost1 extends MosaicEditorApplet {
 
 	
 	public void setup() {
-		mosInfo.imgSizeX = 245/2;
-		mosInfo.imgSizeY = 326/2;
-		mosInfo.xdim = 13;
-		mosInfo.ydim = 7;
+		mosInfo.imgSizeX = 245;
+		mosInfo.imgSizeY = 326;
+		mosInfo.xdim = 6;
+		mosInfo.ydim = 3;
 			
-		//PImage overlayImage = loadImage("c:\\data\\compost\\blackborder.png");
-		//ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
-		ImageEnhancer zoom = new ZoomEnhancer(30,40,60);
+		PImage overlayImage = loadImage("c:\\data\\overlays\\blacksquare.png");
+		ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
 		
 		mosDrawer = new DefaultMosaicDrawer(mosInfo);
 		
-		mosDrawer.imageEnhancers.add(zoom);
-
-		FilterCommand briFilter = new OrderByBriFilter();
+		mosDrawer.imageEnhancers.add(new ZoomEnhancer(120,120,40));
+		
+		
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,5));
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,0));
+		
+		mosDrawer.imageEnhancers.add(blackSquare);
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,10));
+		
+		FilterCommand briFilter = new OrderByBriFilter(false);
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();
 		filters.add(briFilter);
 		
