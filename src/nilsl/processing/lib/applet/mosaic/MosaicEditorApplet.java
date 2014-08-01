@@ -1,6 +1,7 @@
 package nilsl.processing.lib.applet.mosaic;
 
 import nilsl.processing.lib.applet.FilesaveApplet;
+import nilsl.processing.lib.img.filters.CopyFilter;
 import nilsl.processing.lib.img.filters.RandomizeFilter;
 import nilsl.processing.lib.img.filters.RemoveFilter;
 import nilsl.processing.lib.img.filters.SwapFilter;
@@ -10,73 +11,82 @@ import nilsl.processing.lib.twodim.mosaicdrawers.MosaicDrawer2d;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
 import nilsl.processing.lib.twodim.mosaicdrawers.Zoomable;
 
-public abstract class MosaicEditorApplet extends FilesaveApplet{
-	
+public abstract class MosaicEditorApplet extends FilesaveApplet {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected Integer oldPos=null;
-	protected Integer newPos=null;
-	
-	
-	
+	protected Integer oldPos = null;
+	protected Integer newPos = null;
+
+	public void draw() {
+
+		mosDrawer.draw();
+	}
+
 	protected FilterableMultiImageProvider imageProvider;
-	protected MosaicInfo mosInfo=new MosaicInfo();
+	protected MosaicInfo mosInfo = new MosaicInfo();
 	protected DefaultMosaicDrawer mosDrawer;
-	
-	public void setup()
-	{
+	private boolean copyMode = false;
+
+	public void setup() {
 		size(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
 	}
-	
-	public void handleSwap()
-	{
-		if (oldPos==null)
-		{
-			oldPos=getAbsImagePos(mouseX,mouseY);
-		}
-		else
-		{
-			newPos=getAbsImagePos(mouseX,mouseY);
-			imageProvider.filters.add(new SwapFilter(oldPos,newPos));
+
+	public void handleSwap() {
+		if (oldPos == null) {
+			oldPos = getAbsImagePos(mouseX, mouseY);
+		} else {
+			newPos = getAbsImagePos(mouseX, mouseY);
+			imageProvider.filters.add(new SwapFilter(oldPos, newPos));
 			triggerRedraw();
-			newPos=null;
-			oldPos=null;
+			newPos = null;
+			oldPos = null;
 		}
-		
+	}
+
+	public void handleCopy() {
+		if (oldPos == null) {
+			oldPos = getAbsImagePos(mouseX, mouseY);
+		} else {
+			newPos = getAbsImagePos(mouseX, mouseY);
+			imageProvider.filters.add(new CopyFilter(oldPos, newPos));
+			triggerRedraw();
+			newPos = null;
+		}
 	}
 	
-	private void triggerRedraw()
-	{
+	private void triggerRedraw() {
 		imageProvider.ApplyFilters();
 		mosDrawer.draw();
 	}
 
-	
-	
-	int calcCurrentPos(int x, int y)
-	{
-	  return y*mosInfo.xdim + x;
+	int calcCurrentPos(int x, int y) {
+		return y * mosInfo.xdim + x;
 	}
-	
-	int getAbsImagePos(int x, int y)
-	{
-	  int pickupImgXPos = x/mosInfo.imgSizeX;
-	  int pickupImgYPos = y/mosInfo.imgSizeY;
-	  int pickupListPos = calcCurrentPos(pickupImgXPos, pickupImgYPos);
-	  return pickupListPos;
+
+	int getAbsImagePos(int x, int y) {
+		int pickupImgXPos = x / mosInfo.imgSizeX;
+		int pickupImgYPos = y / mosInfo.imgSizeY;
+		int pickupListPos = calcCurrentPos(pickupImgXPos, pickupImgYPos);
+		return pickupListPos;
 	}
-	
-	
-	public void mouseClicked()
-	{if (mouseButton==LEFT)
-		handleSwap();
-	if (mouseButton==RIGHT)
-		handleDelete();
-	
+
+	public void mouseClicked() {
+		if (mouseButton == LEFT)
+			if (copyMode) {
+				handleCopy();
+			} else {
+				handleSwap();
+			}
+		if (mouseButton == RIGHT)
+			handleDelete();
+
 	}
+
 	
+
 	@Override
 	public void keyPressed() {
 		if (key == '+') {
@@ -90,19 +100,24 @@ public abstract class MosaicEditorApplet extends FilesaveApplet{
 		if (key == 'r') {
 			handleRandomize();
 		}
-				
+		if (key == 'c') {
+			this.copyMode = this.copyMode ^ true;
+			oldPos=null;
+		}
+
 		super.keyPressed();
-		
+
 	}
+
 	private void handleDelete() {
-		imageProvider.filters.add(new RemoveFilter(getAbsImagePos(mouseX, mouseY)));
+		imageProvider.filters.add(new RemoveFilter(getAbsImagePos(mouseX,
+				mouseY)));
 		triggerRedraw();
 	}
-	
-	private void handleRandomize()
-	{
+
+	private void handleRandomize() {
 		imageProvider.filters.add(new RandomizeFilter(true));
 		triggerRedraw();
 	}
-	
+
 }

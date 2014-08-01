@@ -27,7 +27,7 @@ public class Compost1 extends MosaicEditorApplet {
 	public void setup() {
 		mosInfo.imgSizeX = 245;
 		mosInfo.imgSizeY = 326;
-		mosInfo.xdim = 6;
+		mosInfo.xdim = 3;
 		mosInfo.ydim = 3;
 			
 		PImage overlayImage = loadImage("c:\\data\\overlays\\blacksquare.png");
@@ -35,14 +35,16 @@ public class Compost1 extends MosaicEditorApplet {
 		
 		mosDrawer = new DefaultMosaicDrawer(mosInfo);
 		
-		mosDrawer.imageEnhancers.add(new ZoomEnhancer(120,120,40));
+		//mosDrawer.imageEnhancers.add(new ZoomEnhancer(120,120,40));
 		
 		
-		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,5));
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,3));
 		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,0));
 		
-		mosDrawer.imageEnhancers.add(blackSquare);
-		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,10));
+		//mosDrawer.imageEnhancers.add(blackSquare);
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,10));
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,5));
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.65f));
 		
 		FilterCommand briFilter = new OrderByBriFilter(false);
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();
@@ -64,10 +66,7 @@ public class Compost1 extends MosaicEditorApplet {
 	}
 
 
-	public void draw() {
-
-		mosDrawer.draw();
-	}
+	
 
 	
 
@@ -75,3 +74,4 @@ public class Compost1 extends MosaicEditorApplet {
 	
 
 }
+

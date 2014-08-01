@@ -5,9 +5,9 @@ import processing.core.PGraphics;
 public class ProcessingFilterEnhancer implements ImageEnhancer {
 
 	private int kind;
-	private int param;
+	private float param;
 
-	public ProcessingFilterEnhancer(int kind, int param) {
+	public ProcessingFilterEnhancer(int kind, float param) {
 		this.kind = kind;
 		this.param = param;
 	}
