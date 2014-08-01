@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nilsl.processing.lib.img.NImage;
-import nilsl.processing.lib.img.RecordImage;
-import nilsl.processing.lib.img.filters.LabelFilter;
 import nilsl.processing.lib.io.FileRepo;
 
 public class ImgDbGenerator {

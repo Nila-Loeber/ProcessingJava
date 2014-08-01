@@ -5,18 +5,30 @@ import nilsl.processing.lib.img.filters.RandomizeFilter;
 import nilsl.processing.lib.img.filters.RemoveFilter;
 import nilsl.processing.lib.img.filters.SwapFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
+import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicDrawer2d;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
 import nilsl.processing.lib.twodim.mosaicdrawers.Zoomable;
 
 public abstract class MosaicEditorApplet extends FilesaveApplet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Integer oldPos=null;
 	protected Integer newPos=null;
 	
-	protected abstract FilterableMultiImageProvider getImageProvider();
-	protected abstract MosaicInfo getMosInfo();
-	protected abstract MosaicDrawer2d getMosDrawer();
+	
+	
+	protected FilterableMultiImageProvider imageProvider;
+	protected MosaicInfo mosInfo=new MosaicInfo();
+	protected DefaultMosaicDrawer mosDrawer;
+	
+	public void setup()
+	{
+		size(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
+	}
 	
 	public void handleSwap()
 	{
@@ -27,30 +39,31 @@ public abstract class MosaicEditorApplet extends FilesaveApplet{
 		else
 		{
 			newPos=getAbsImagePos(mouseX,mouseY);
-			getImageProvider().filters.add(new SwapFilter(oldPos,newPos));
+			imageProvider.filters.add(new SwapFilter(oldPos,newPos));
+			triggerRedraw();
 			newPos=null;
 			oldPos=null;
 		}
-		triggerRedraw();
+		
 	}
 	
 	private void triggerRedraw()
 	{
-		getImageProvider().ApplyFilters();
-		getMosDrawer().draw();
+		imageProvider.ApplyFilters();
+		mosDrawer.draw();
 	}
 
 	
 	
 	int calcCurrentPos(int x, int y)
 	{
-	  return y*getMosInfo().xdim + x;
+	  return y*mosInfo.xdim + x;
 	}
 	
 	int getAbsImagePos(int x, int y)
 	{
-	  int pickupImgXPos = x/getMosInfo().imgSizeX;
-	  int pickupImgYPos = y/getMosInfo().imgSizeY;
+	  int pickupImgXPos = x/mosInfo.imgSizeX;
+	  int pickupImgYPos = y/mosInfo.imgSizeY;
 	  int pickupListPos = calcCurrentPos(pickupImgXPos, pickupImgYPos);
 	  return pickupListPos;
 	}
@@ -68,11 +81,11 @@ public abstract class MosaicEditorApplet extends FilesaveApplet{
 	public void keyPressed() {
 		if (key == '+') {
 			background(0);
-			((Zoomable) getMosDrawer()).zoom();
+			((Zoomable) mosDrawer).zoom();
 		}
 		if (key == '-') {
 			background(0);
-			((Zoomable) getMosDrawer()).unzoom();
+			((Zoomable) mosDrawer).unzoom();
 		}
 		if (key == 'r') {
 			handleRandomize();
@@ -82,13 +95,13 @@ public abstract class MosaicEditorApplet extends FilesaveApplet{
 		
 	}
 	private void handleDelete() {
-		getImageProvider().filters.add(new RemoveFilter(getAbsImagePos(mouseX, mouseY)));
+		imageProvider.filters.add(new RemoveFilter(getAbsImagePos(mouseX, mouseY)));
 		triggerRedraw();
 	}
 	
 	private void handleRandomize()
 	{
-		getImageProvider().filters.add(new RandomizeFilter(true));
+		imageProvider.filters.add(new RandomizeFilter(true));
 		triggerRedraw();
 	}
 	

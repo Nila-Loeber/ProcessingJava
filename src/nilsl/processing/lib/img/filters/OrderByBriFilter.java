@@ -4,7 +4,6 @@ import java.util.List;
 
 import nilsl.processing.lib.img.NImage;
 import nilsl.processing.lib.img.comparators.BriComparator;
-import nilsl.processing.lib.img.comparators.HueComparator;
 
 public class OrderByBriFilter implements FilterCommand {
 
@@ -16,7 +15,7 @@ public class OrderByBriFilter implements FilterCommand {
 
 	@Override
 	public boolean removeAfterApply() {
-		return false;
+		return true;
 	}
 
 }
