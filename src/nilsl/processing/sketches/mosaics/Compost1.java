@@ -10,13 +10,12 @@ import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
 import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
-import nilsl.processing.lib.img.enhancers.ZoomEnhancer;
+import nilsl.processing.lib.img.enhancers.TypoEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
-import nilsl.processing.lib.img.filters.RandomizeFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
-import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
+import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 public class Compost1 extends MosaicEditorApplet {
 
@@ -38,13 +37,14 @@ public class Compost1 extends MosaicEditorApplet {
 		//mosDrawer.imageEnhancers.add(new ZoomEnhancer(120,120,40));
 		
 		
-		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,3));
-		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,0));
-		
-		//mosDrawer.imageEnhancers.add(blackSquare);
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,3));
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,5));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,10));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,5));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.65f));
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,0));
+		//mosDrawer.imageEnhancers.add(blackSquare);
+		
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.65f));
+		mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",120,30,105,color(0,0,0,100),new SentenceProvider("A knife, a fork, a bottle and a cork")));
 		
 		FilterCommand briFilter = new OrderByBriFilter(false);
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();

@@ -23,7 +23,8 @@ public class MultiImageProvider extends ImageProvider implements Resetable {
 		ObjectInputStream o = new ObjectInputStream(fis);
 
 		images = (List<NImage>) o.readObject();
-
+		o.close();
+		
 		reset();
 	}
 

@@ -7,7 +7,6 @@ import nilsl.processing.lib.img.filters.RemoveFilter;
 import nilsl.processing.lib.img.filters.SwapFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
-import nilsl.processing.lib.twodim.mosaicdrawers.MosaicDrawer2d;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
 import nilsl.processing.lib.twodim.mosaicdrawers.Zoomable;
 
@@ -32,6 +31,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 
 	public void setup() {
 		size(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
+		//noLoop();
 	}
 
 	public void handleSwap() {

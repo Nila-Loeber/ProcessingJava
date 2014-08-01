@@ -51,6 +51,7 @@ public class ImgDbGenerator {
 		fos = new FileOutputStream(filename);
 		ObjectOutputStream o = new ObjectOutputStream(fos);
 		o.writeObject(images);
+		o.close();
 	}
 
 }
