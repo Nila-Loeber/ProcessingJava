@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nilsl.processing.lib.applet.FilesaveApplet;
-import nilsl.processing.lib.applet.mosaic.SwapperApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.LabelFilter;
 import nilsl.processing.lib.img.filters.SwapFilter;
@@ -15,7 +15,7 @@ import nilsl.processing.lib.twodim.mosaicdrawers.MosaicDrawer2d;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
 import nilsl.processing.lib.twodim.mosaicdrawers.Zoomable;
 
-public class RecordLabelsOnly extends SwapperApplet {
+public class RecordLabelsOnly extends MosaicEditorApplet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -67,7 +67,7 @@ public class RecordLabelsOnly extends SwapperApplet {
 	}
 
 	@Override
-	protected FilterableMultiImageProvider getimageProvider() {
+	protected FilterableMultiImageProvider getImageProvider() {
 		return imgProvider;
 	}
 

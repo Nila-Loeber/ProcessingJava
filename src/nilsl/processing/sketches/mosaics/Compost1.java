@@ -6,7 +6,7 @@ import java.util.List;
 
 import processing.core.PGraphics;
 import processing.core.PImage;
-import nilsl.processing.lib.applet.mosaic.SwapperApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
 import nilsl.processing.lib.img.enhancers.ZoomEnhancer;
@@ -19,7 +19,7 @@ import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicDrawer2d;
 import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
 
-public class Compost1 extends SwapperApplet {
+public class Compost1 extends MosaicEditorApplet {
 
 	private MosaicInfo mosInfo = new MosaicInfo();
 	
@@ -46,9 +46,9 @@ public class Compost1 extends SwapperApplet {
 		md.imageEnhancers.add(zoom);
 
 		FilterCommand randFilter = new RandomizeFilter(true);
-//		FilterCommand hueFilter = new OrderByBriFilter();
+		FilterCommand briFilter = new OrderByBriFilter();
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();
-//		filters.add(hueFilter);
+		filters.add(briFilter);
 		filters.add(randFilter);
 		
 		
@@ -74,7 +74,7 @@ public class Compost1 extends SwapperApplet {
 	}
 
 	@Override
-	protected FilterableMultiImageProvider getimageProvider() {
+	protected FilterableMultiImageProvider getImageProvider() {
 		return imgProvider;
 	}
 
