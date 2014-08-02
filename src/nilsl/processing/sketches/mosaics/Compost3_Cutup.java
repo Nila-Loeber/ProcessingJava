@@ -14,6 +14,7 @@ import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.enhancers.TypoEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
+import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.CutupDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
@@ -31,7 +32,7 @@ public class Compost3_Cutup extends MosaicEditorApplet {
 	
 	public void setup() {
 		mosInfo.xdim = 1;
-		mosInfo.ydim = 17;
+		mosInfo.ydim = 7;
 				
 		//mosInfo.imgSizeX = 245;
 		mosInfo.imgSizeX = (int) (1224/1.5);
@@ -39,15 +40,16 @@ public class Compost3_Cutup extends MosaicEditorApplet {
 		mosInfo.imgSizeY = (int) (1632/1.5/mosInfo.ydim);
 		
 		mosDrawer = new CutupDrawer(mosInfo);
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,2));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,0));
-//		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
-//		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,0));
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,4));
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,3));
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,5));
 		
 		mosDrawer.imageEnhancers.add(new CutupEnhancer(mosInfo.ydim));		
 		
 		try {
-			imageProvider = new FilterableMultiImageProvider("c:\\data\\compost\\small\\images.dat",new ArrayList<FilterCommand>());
+			imageProvider = new FilterableMultiImageProvider("c:\\data\\compost\\small\\images.dat");
+			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

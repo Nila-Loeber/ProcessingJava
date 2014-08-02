@@ -6,28 +6,39 @@ import java.util.List;
 
 import nilsl.processing.lib.img.filters.FilterCommand;
 
-public class FilterableMultiImageProvider extends MultiImageProvider {
+public class FilterableMultiImageProvider extends MultiImageFileProvider implements Filterable {
 
-	public final List<FilterCommand> filters;
-
-	public FilterableMultiImageProvider(List<String> filenames,
-			List<FilterCommand> filters) {
+	public FilterableMultiImageProvider(List<String> filenames) {
 		super(filenames);
-		this.filters = filters;
 	}
 
-	public FilterableMultiImageProvider(String dataFile,
-			List<FilterCommand> filters) throws ClassNotFoundException, IOException {
-		super(dataFile);
-		this.filters = filters;
+	public FilterableMultiImageProvider(String filename) throws ClassNotFoundException, IOException {
+		super(filename);
 	}
 	
+	private FilterProcessor processor;
+
+	@Override
 	public void ApplyFilters() {
-		for(Iterator<FilterCommand> i = filters.iterator(); i.hasNext();) {
-			FilterCommand filter = i.next();
-			filter.apply(images);
-		    if (filter.removeAfterApply()) i.remove();
-		 }
+		processor.ApplyFilters(images);
 		reset();
 	}
+
+	@Override
+	public void setFilterProcessor(FilterProcessor processor) {
+		// TODO Auto-generated method stub
+		this.processor=processor;
+	}
+
+	@Override
+	public FilterProcessor getFilterProcessor() {
+		// TODO Auto-generated method stub
+		return processor;
+	}
+
+	
+
+	
+	
+	
 }

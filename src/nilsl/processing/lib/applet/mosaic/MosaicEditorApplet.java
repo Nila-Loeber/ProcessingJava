@@ -40,7 +40,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 			oldPos = getAbsImagePos(mouseX, mouseY);
 		} else {
 			newPos = getAbsImagePos(mouseX, mouseY);
-			imageProvider.filters.add(new SwapFilter(oldPos, newPos));
+			imageProvider.getFilterProcessor().filters.add(new SwapFilter(oldPos, newPos));
 			triggerRedraw();
 			newPos = null;
 			oldPos = null;
@@ -52,7 +52,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 			oldPos = getAbsImagePos(mouseX, mouseY);
 		} else {
 			newPos = getAbsImagePos(mouseX, mouseY);
-			imageProvider.filters.add(new CopyFilter(oldPos, newPos));
+			imageProvider.getFilterProcessor().filters.add(new CopyFilter(oldPos, newPos));
 			triggerRedraw();
 			newPos = null;
 		}
@@ -93,7 +93,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 
 	private void handleNewImage() {
 		int pos = getAbsImagePos(mouseX, mouseY);
-		imageProvider.filters.add(new NewImageFilter(pos));
+		imageProvider.getFilterProcessor().filters.add(new NewImageFilter(pos));
 		triggerRedraw();
 		
 	}
@@ -121,13 +121,13 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	}
 
 	private void handleDelete() {
-		imageProvider.filters.add(new RemoveFilter(getAbsImagePos(mouseX,
+		imageProvider.getFilterProcessor().filters.add(new RemoveFilter(getAbsImagePos(mouseX,
 				mouseY)));
 		triggerRedraw();
 	}
 
 	private void handleRandomize() {
-		imageProvider.filters.add(new RandomizeFilter(true));
+		imageProvider.getFilterProcessor().filters.add(new RandomizeFilter(true));
 		triggerRedraw();
 	}
 

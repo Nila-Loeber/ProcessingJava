@@ -13,6 +13,7 @@ import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.enhancers.TypoEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
+import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintInfo;
@@ -52,7 +53,8 @@ public class Compost2_Tint extends MosaicEditorApplet {
 		
 		
 		try {
-			imageProvider = new FilterableMultiImageProvider("c:\\data\\compost\\verysmall\\images.dat",new ArrayList<FilterCommand>());
+			imageProvider = new FilterableMultiImageProvider("c:\\data\\compost\\verysmall\\images.dat");
+			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

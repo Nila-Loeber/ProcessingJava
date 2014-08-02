@@ -7,6 +7,7 @@ import java.util.List;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.LabelFilter;
+import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 
@@ -38,7 +39,8 @@ public class RecordLabelsOnly extends MosaicEditorApplet {
 		// FilterableMultiImageProvider(files.subList(0,500),filters);
 		try {
 			imageProvider = new FilterableMultiImageProvider(
-					"c:\\data\\unsorted\\images.dat", filters);
+					"c:\\data\\unsorted\\images.dat");
+			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
