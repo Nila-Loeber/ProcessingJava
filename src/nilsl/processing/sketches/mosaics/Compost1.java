@@ -26,8 +26,8 @@ public class Compost1 extends MosaicEditorApplet {
 	public void setup() {
 		mosInfo.imgSizeX = 245;
 		mosInfo.imgSizeY = 326;
-		mosInfo.xdim = 3;
-		mosInfo.ydim = 3;
+		mosInfo.xdim = 1;
+		mosInfo.ydim = 1;
 			
 		PImage overlayImage = loadImage("c:\\data\\overlays\\blacksquare.png");
 		ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
