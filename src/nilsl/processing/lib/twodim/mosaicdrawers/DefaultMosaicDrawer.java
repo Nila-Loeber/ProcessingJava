@@ -8,15 +8,15 @@ import nilsl.processing.lib.twodim.counters.DefaultCounter2d;
 
 public class DefaultMosaicDrawer extends EnhanceableMosaicDrawer2d implements Zoomable {
 
-	private Counter2d counter;
-	private int imgXSize;
-	private int imgYSize;
-	private int maxX;
-	private int maxY;
+	protected Counter2d counter;
+	protected int imgXSize;
+	protected int imgYSize;
+	protected int maxX;
+	protected int maxY;
 	
 	
 
-	private void ResetCounter()
+	protected void ResetCounter()
 	{
 		counter = new DefaultCounter2d(maxX, maxY);
 		((Resetable)imageProvider).reset();
