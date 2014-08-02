@@ -16,6 +16,7 @@ import nilsl.processing.lib.img.filters.OrderByBriFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintInfo;
+import nilsl.processing.lib.txt.textproviders.CounterProvider;
 import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 @SuppressWarnings("unused")
@@ -26,28 +27,28 @@ public class Compost2_Tint extends MosaicEditorApplet {
 
 	
 	public void setup() {
-		mosInfo.imgSizeX = 245/4;
+		mosInfo.imgSizeX = 245;
 		//mosInfo.imgSizeX = (int) (1224/1.5);
-		mosInfo.imgSizeY = 326/4;
+		mosInfo.imgSizeY = 326;
 		//mosInfo.imgSizeY = (int) (1632/1.5);
-		mosInfo.xdim = 18;
-		mosInfo.ydim = 9;
+		mosInfo.xdim = 3;
+		mosInfo.ydim = 3;
 		
 		colorMode(HSB);
 		
 		List<TintInfo> tintInfos = new ArrayList<TintInfo>();
 		
-		for (int i=0; i<100; i++)
+		for (int i=0; i<10; i++)
 		{
-			tintInfos.add(new TintInfo(i*2, 255, sin(i/5)*255, 255f));
+			tintInfos.add(new TintInfo(i*20, 255, 255, 255f));
 		}
 		
 		mosDrawer = new TintDrawer(mosInfo,tintInfos,mosInfo.xdim*mosInfo.ydim,1);
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,2));
-		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.65f));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,0));
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,0));
 		
-		mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",60,30,30,color(255,255,255,255),new SentenceProvider("A knife, a fork, a bottle and a cork")));
+		//mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",60,100,100,color(255,0,255,127),new CounterProvider(9)));
 		
 		
 		try {

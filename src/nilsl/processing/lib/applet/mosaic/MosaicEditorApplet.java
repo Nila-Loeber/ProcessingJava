@@ -2,6 +2,7 @@ package nilsl.processing.lib.applet.mosaic;
 
 import nilsl.processing.lib.applet.FilesaveApplet;
 import nilsl.processing.lib.img.filters.CopyFilter;
+import nilsl.processing.lib.img.filters.NewImageFilter;
 import nilsl.processing.lib.img.filters.RandomizeFilter;
 import nilsl.processing.lib.img.filters.RemoveFilter;
 import nilsl.processing.lib.img.filters.SwapFilter;
@@ -83,9 +84,19 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 		if (mouseButton == RIGHT)
 			handleDelete();
 
+		if (mouseButton == CENTER)
+			handleNewImage();
+		
 	}
 
 	
+
+	private void handleNewImage() {
+		int pos = getAbsImagePos(mouseX, mouseY);
+		imageProvider.filters.add(new NewImageFilter(pos));
+		triggerRedraw();
+		
+	}
 
 	@Override
 	public void keyPressed() {
@@ -104,7 +115,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 			this.copyMode = this.copyMode ^ true;
 			oldPos=null;
 		}
-
+	
 		super.keyPressed();
 
 	}
