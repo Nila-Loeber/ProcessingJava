@@ -16,6 +16,7 @@ import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
+import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.CutupDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintDrawer;
@@ -56,7 +57,7 @@ public class Compost3_Cutup extends MosaicEditorApplet {
 		}
 		imageProvider.ApplyFilters();
 		
-		mosDrawer.imageProvider = imageProvider;
+		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
 		super.setup();

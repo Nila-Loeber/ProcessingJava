@@ -15,6 +15,7 @@ import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
+import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintInfo;
 import nilsl.processing.lib.txt.textproviders.CounterProvider;
@@ -61,7 +62,7 @@ public class Compost2_Tint extends MosaicEditorApplet {
 		}
 		imageProvider.ApplyFilters();
 		
-		mosDrawer.imageProvider = imageProvider;
+		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
 		super.setup();

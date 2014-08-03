@@ -5,4 +5,9 @@ public class MosaicInfo {
 	public int imgSizeY;
 	public int xdim;
 	public int ydim;
+	
+	public int Size()
+	{
+		return xdim*ydim;
+	}
 }

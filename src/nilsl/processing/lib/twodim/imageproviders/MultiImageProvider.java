@@ -1,14 +1,16 @@
 package nilsl.processing.lib.twodim.imageproviders;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import nilsl.processing.lib.img.NImage;
 import processing.core.PGraphics;
+import processing.core.PImage;
 
 public abstract class MultiImageProvider extends ImageProvider implements Resetable {
 
-	protected List<NImage> images;
+	protected List<NImage> images = new ArrayList<NImage>();
 	Iterator<NImage> iterator;
 
 	public MultiImageProvider() {
@@ -18,7 +20,9 @@ public abstract class MultiImageProvider extends ImageProvider implements Reseta
 	@Override
 	public void getNextImage(PGraphics buffer) {
 		buffer.beginDraw();
-		buffer.image(iterator.next().GetImage(), 0, 0, buffer.width,
+		PImage nextImage = iterator.next().GetImage();
+		nextImage.parent = buffer.parent;
+		buffer.image(nextImage, 0, 0, buffer.width,
 				buffer.height);
 		buffer.endDraw();
 	}

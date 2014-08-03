@@ -20,6 +20,14 @@ public class NImage implements Serializable
 	  public int dominantSat;
 	  public int dominantBri;
 
+	  public NImage(PImage image)
+	  {
+		  this.image = image;
+		  buildHistograms();
+		    buildDominantValues();
+	  }
+	  
+	  
 	  public PImage GetImage()
 	  {
 		  if (image==null)
@@ -34,13 +42,19 @@ public class NImage implements Serializable
 	  {
 	    imageFilename = filename;
 	    buildHistograms();
-	    dominantHue = calcDominantValue(histogramHue);
+	    buildDominantValues();
+	  }
+
+
+	private void buildDominantValues() {
+		dominantHue = calcDominantValue(histogramHue);
 	    dominantSat = calcDominantValue(histogramSat);
 	    dominantBri = calcDominantValue(histogramBri);
-	  }
+	}
 
 	  void buildHistograms()
 	  {
+		GetImage().loadPixels();
 	    for (int i=0; i<GetImage().pixels.length; i++)
 	    {
 	      int pixel=GetImage().pixels[i];
