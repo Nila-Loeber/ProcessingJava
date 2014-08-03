@@ -12,6 +12,7 @@ public class FilesaveApplet extends PApplet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int filenameCounter = 0;
+	private String baseDir = "C:\\data\\compositions\\";
 	private String baseFilename;
 	
 	public FilesaveApplet()
@@ -25,7 +26,7 @@ public class FilesaveApplet extends PApplet {
 	public void keyPressed() {
 		if (key == 's') {
 
-			save(baseFilename + "_" + filenameCounter + ".png");
+			save(baseDir+ baseFilename + "_" + filenameCounter + ".png");
 			filenameCounter++;
 
 		}

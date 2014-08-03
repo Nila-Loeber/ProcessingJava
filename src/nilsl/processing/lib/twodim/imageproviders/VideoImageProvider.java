@@ -42,7 +42,9 @@ public class VideoImageProvider extends MultiImageProvider implements
 
 		List<NImage> results = new ArrayList<NImage>();
 		video.play();
-
+		video.read();
+		
+		
 		float clipStart = clip.interval.getStartMillis()/1000;
 		float clipEnd = clip.interval.getEndMillis()/1000;
 		float period = (clipEnd-clipStart)/clip.numPictures;

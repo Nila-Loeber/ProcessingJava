@@ -21,6 +21,8 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	protected Integer oldPos = null;
 	protected Integer newPos = null;
 
+	private float zoomFactor=1;
+	
 	public void draw() {
 
 		mosDrawer.draw();
@@ -68,8 +70,8 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	}
 
 	int getAbsImagePos(int x, int y) {
-		int pickupImgXPos = x / mosInfo.imgSizeX;
-		int pickupImgYPos = y / mosInfo.imgSizeY;
+		int pickupImgXPos = (int) (x / (mosInfo.imgSizeX * zoomFactor));
+		int pickupImgYPos = (int) (y / (mosInfo.imgSizeY * zoomFactor));
 		int pickupListPos = calcCurrentPos(pickupImgXPos, pickupImgYPos);
 		return pickupListPos;
 	}
@@ -101,10 +103,12 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	@Override
 	public void keyPressed() {
 		if (key == '+') {
+			zoomFactor*=2;
 			background(0);
 			((Zoomable) mosDrawer).zoom();
 		}
 		if (key == '-') {
+			zoomFactor/=2;
 			background(0);
 			((Zoomable) mosDrawer).unzoom();
 		}
