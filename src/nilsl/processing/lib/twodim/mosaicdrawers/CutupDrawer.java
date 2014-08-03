@@ -5,8 +5,6 @@ import processing.core.PGraphics;
 
 public class CutupDrawer extends DefaultMosaicDrawer {
 
-	private int numSlices;
-
 	public CutupDrawer(MosaicInfo mosInfo) {
 		super(mosInfo);
 	}

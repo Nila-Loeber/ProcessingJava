@@ -7,8 +7,6 @@ import java.util.List;
 import processing.core.PImage;
 import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
-import nilsl.processing.lib.img.enhancers.ImageEnhancer;
-import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
 import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.enhancers.TypoEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
@@ -32,7 +30,7 @@ public class Compost1 extends MosaicEditorApplet {
 		mosInfo.ydim = 1;
 			
 		PImage overlayImage = loadImage("c:\\data\\overlays\\blacksquare.png");
-		ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
+		//ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
 		
 		mosDrawer = new DefaultMosaicDrawer(mosInfo);
 		

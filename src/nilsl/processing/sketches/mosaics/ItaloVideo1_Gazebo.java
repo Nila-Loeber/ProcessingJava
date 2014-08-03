@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.joda.time.Interval;
 
-import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
-import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
-import nilsl.processing.lib.img.enhancers.ZoomEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
@@ -22,8 +19,8 @@ private static final long serialVersionUID = 1L;
 
 	
 	public void setup() {
-		mosInfo.xdim = 3;
-		mosInfo.ydim = 3;
+		mosInfo.xdim = 4;
+		mosInfo.ydim = 4;
 				
 		mosInfo.imgSizeX = 480;
 		mosInfo.imgSizeY = 360;
@@ -39,7 +36,7 @@ private static final long serialVersionUID = 1L;
 		
 		//mosDrawer.imageEnhancers.add(new CutupEnhancer(mosInfo.ydim));		
 		
-		VideoClipInfo clipInfo=new VideoClipInfo(new Interval(11*1000,20*1000),mosInfo.Size()*2);
+		VideoClipInfo clipInfo=new VideoClipInfo(new Interval(11*1000,120*1000),mosInfo.Size()*4);
 		//VideoClipInfo clipInfo2=new VideoClipInfo(new Interval(40*1000,60*1000),mosInfo.Size()/2);
 		List<VideoClipInfo> clipInfos = new ArrayList<VideoClipInfo>();
 		clipInfos.add(clipInfo);

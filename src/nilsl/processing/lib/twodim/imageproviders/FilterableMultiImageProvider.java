@@ -1,10 +1,7 @@
 package nilsl.processing.lib.twodim.imageproviders;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
-
-import nilsl.processing.lib.img.filters.FilterCommand;
 
 public class FilterableMultiImageProvider extends MultiImageFileProvider implements Filterable {
 

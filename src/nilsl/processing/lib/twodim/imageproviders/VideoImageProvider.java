@@ -1,17 +1,11 @@
 package nilsl.processing.lib.twodim.imageproviders;
 
-import java.awt.Image;
-import java.awt.image.ImageProducer;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.joda.time.Interval;
 
 import nilsl.processing.lib.img.NImage;
 import nilsl.processing.lib.processingshims.PAppletShim;
 import processing.core.PApplet;
-import processing.core.PGraphics;
 import processing.core.PImage;
 import processing.video.Movie;
 

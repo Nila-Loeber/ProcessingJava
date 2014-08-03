@@ -23,12 +23,15 @@ public class FilesaveApplet extends PApplet {
 		baseFilename=dateFormat.format(date);
 	}
 	
+	protected void HandleSave()
+	{
+		save(baseDir+ baseFilename + "_" + filenameCounter + ".png");
+		filenameCounter++;
+	}
+	
 	public void keyPressed() {
 		if (key == 's') {
-
-			save(baseDir+ baseFilename + "_" + filenameCounter + ".png");
-			filenameCounter++;
-
+			HandleSave();
 		}
 	}
 
