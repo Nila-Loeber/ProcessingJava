@@ -12,8 +12,10 @@ import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
 import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.enhancers.TypoEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
+import nilsl.processing.lib.img.filters.HueBPF;
 import nilsl.processing.lib.img.filters.LabelFilter;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
+import nilsl.processing.lib.img.filters.OrderByHueFilter;
 import nilsl.processing.lib.img.filters.SizeFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
@@ -43,23 +45,29 @@ public class ItaloRecord3_Tint extends MosaicEditorApplet {
 		
 		List<TintInfo> tintInfos = new ArrayList<TintInfo>();
 		
-		for (int i=0; i<8; i++)
+		for (int i=0; i<9; i++)
 		{
-			tintInfos.add(new TintInfo(i*20, 255, 255, 255f));
+			tintInfos.add(new TintInfo(i*20+50, 255, 255, 255f));
 		}
 		
 		//mosDrawer = new TintDrawer(mosInfo,tintInfos,mosInfo.xdim*mosInfo.ydim,1);
 		mosDrawer = new DefaultMosaicDrawer(mosInfo);
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,2));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.6f));
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,4));
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,0));
-		//mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",60,100,100,color(255,0,255,127),new CounterProvider(9)));
+		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR ,5));
+		//mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",60,100,100,color(255,0,255,127),new CounterProvider(mosInfo.xdim*mosInfo.ydim)));
 		
 		FilterCommand sizeFilter = new SizeFilter(600,600);
-		LabelFilter labelFilter = new LabelFilter();
+		//FilterCommand briFilter = new OrderByBriFilter(false);
+		//FilterCommand hueFilter = new OrderByHueFilter();
+		FilterCommand hueFilter = new HueBPF(10, 30);
+		
+		//LabelFilter labelFilter = new LabelFilter();
 		List<FilterCommand> filterCommands = new ArrayList<FilterCommand>();
 		filterCommands.add(sizeFilter);
-		filterCommands.add(labelFilter);
+		filterCommands.add(hueFilter);
+		//filterCommands.add(labelFilter);
 		
 		try {
 			imageProvider = new FilterableMultiImageProvider("c:\\data\\unsorted\\recordimages.dat");

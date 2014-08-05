@@ -15,7 +15,7 @@ public class OrderByHueFilter implements FilterCommand {
 
 	@Override
 	public boolean removeAfterApply() {
-		return false;
+		return true;
 	}
 
 }

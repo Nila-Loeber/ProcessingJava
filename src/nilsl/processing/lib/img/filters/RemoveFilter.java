@@ -14,8 +14,8 @@ public class RemoveFilter implements FilterCommand {
 	
 	@Override
 	public void apply(List<? super NImage> images) {
+		if (imgToRemove<images.size())
 		images.remove(imgToRemove);
-//		System.out.println("Removing image: " + imgToRemove);
 	}
 
 	@Override
