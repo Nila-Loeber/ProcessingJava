@@ -36,7 +36,7 @@ public class ItaloRecord3_Tint extends MosaicEditorApplet {
 		//mosInfo.imgSizeX = (int) (1224/1.5);
 		mosInfo.imgSizeY = 600;
 		//mosInfo.imgSizeY = (int) (1632/1.5);
-		mosInfo.xdim = 8;
+		mosInfo.xdim = 9;
 		mosInfo.ydim = 6;
 		
 		colorMode(HSB);
@@ -62,7 +62,7 @@ public class ItaloRecord3_Tint extends MosaicEditorApplet {
 		filterCommands.add(labelFilter);
 		
 		try {
-			imageProvider = new FilterableMultiImageProvider("c:\\data\\unsorted\\images.dat");
+			imageProvider = new FilterableMultiImageProvider("c:\\data\\unsorted\\recordimages.dat");
 			imageProvider.setFilterProcessor(new FilterProcessor(filterCommands));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block

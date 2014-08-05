@@ -15,9 +15,9 @@ public class NewImageFilter implements FilterCommand {
 	}
 
 	@Override
-	public void apply(List<NImage> images) {
+	public void apply(List<? super NImage> images) {
 		int replacementImgPos = (int) (Math.random()*images.size());
-		images.set(pos, images.get(replacementImgPos));
+		images.set(pos, (NImage)images.get(replacementImgPos));
 	}
 
 	@Override

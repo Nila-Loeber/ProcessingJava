@@ -13,7 +13,7 @@ public class RemoveFilter implements FilterCommand {
 	}
 	
 	@Override
-	public void apply(List<NImage> images) {
+	public void apply(List<? super NImage> images) {
 		images.remove(imgToRemove);
 //		System.out.println("Removing image: " + imgToRemove);
 	}

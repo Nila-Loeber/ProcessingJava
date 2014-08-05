@@ -16,11 +16,11 @@ public class SizeFilter implements FilterCommand {
 	}
 
 	@Override
-	public void apply(List<NImage> images) {
+	public void apply(List<? super NImage> images) {
 		images = images
 				.stream()
-				.filter(ni -> ni.width >= this.x
-						&& ni.height >= this.y)
+				.filter((Object ni) -> ((NImage)ni).width >= this.x
+						&& ((NImage)ni).height >= this.y)
 				.collect(Collectors.toList());
 		;
 	}

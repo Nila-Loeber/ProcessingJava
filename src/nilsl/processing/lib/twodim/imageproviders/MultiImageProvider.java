@@ -10,8 +10,8 @@ import processing.core.PImage;
 
 public abstract class MultiImageProvider extends ImageProvider implements Resetable {
 
-	protected List<NImage> images = new ArrayList<NImage>();
-	Iterator<NImage> iterator;
+	protected List<? super NImage> images = new ArrayList<NImage>();
+	Iterator<? super NImage> iterator;
 
 	public MultiImageProvider() {
 		super();
@@ -20,7 +20,7 @@ public abstract class MultiImageProvider extends ImageProvider implements Reseta
 	@Override
 	public void getNextImage(PGraphics buffer) {
 		buffer.beginDraw();
-		PImage nextImage = iterator.next().GetImage();
+		PImage nextImage = ((NImage)iterator.next()).GetImage();
 		nextImage.parent = buffer.parent;
 		buffer.image(nextImage, 0, 0, buffer.width,
 				buffer.height);

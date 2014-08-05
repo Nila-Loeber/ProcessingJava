@@ -15,7 +15,7 @@ public class RandomizeFilter implements FilterCommand {
 	}
 	
 	@Override
-	public void apply(List<NImage> images) {
+	public void apply(List<? super NImage> images) {
 		Collections.shuffle(images);
 	}
 

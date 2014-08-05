@@ -5,6 +5,6 @@ import java.util.List;
 import nilsl.processing.lib.img.NImage;
 
 public interface FilterCommand {
-	void apply(List<NImage> images);
+	void apply(List<? super NImage> images);
 	boolean removeAfterApply();
 }

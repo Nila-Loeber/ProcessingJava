@@ -14,7 +14,7 @@ import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 
 @SuppressWarnings("serial")
-public class ItaloRecordCover2_CutupMosaic extends MosaicEditorApplet {
+public class ItaloRecord2_CutupMosaic extends MosaicEditorApplet {
 	public void setup() {
 		mosInfo.xdim = 6;
 		mosInfo.ydim = 4;

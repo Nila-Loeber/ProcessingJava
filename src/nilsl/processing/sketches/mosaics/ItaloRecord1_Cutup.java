@@ -26,7 +26,7 @@ import nilsl.processing.lib.txt.textproviders.CounterProvider;
 import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 @SuppressWarnings("unused")
-public class ItaloRecordCover1_Cutup extends MosaicEditorApplet {
+public class ItaloRecord1_Cutup extends MosaicEditorApplet {
 
 
 	private static final long serialVersionUID = 1L;

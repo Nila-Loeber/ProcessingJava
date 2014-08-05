@@ -16,7 +16,7 @@ public class SwapFilter implements FilterCommand {
 	}
 
 	@Override
-	public void apply(List<NImage> images) {
+	public void apply(List<? super NImage> images) {
 		if (oldPos != newPos) {
 			Collections.swap(images, oldPos, newPos);
 		}

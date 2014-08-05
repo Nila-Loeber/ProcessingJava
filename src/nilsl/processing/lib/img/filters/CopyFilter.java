@@ -15,9 +15,9 @@ public class CopyFilter implements FilterCommand {
 	}
 	
 	@Override
-	public void apply(List<NImage> images) {
+	public void apply(List<? super NImage> images) {
 		if (oldPos != newPos) {
-			images.set(newPos, images.get(oldPos));
+			images.set(newPos, (NImage)images.get(oldPos));
 		}
 
 	}

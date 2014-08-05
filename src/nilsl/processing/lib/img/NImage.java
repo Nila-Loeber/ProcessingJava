@@ -11,7 +11,7 @@ public class NImage implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 3L;
-	  private transient PImage image;
+	  protected transient PImage image;
 	  public String imageFilename;
 	  int[] histogramHue=new int[256];
 	  int[] histogramSat=new int[256];
@@ -26,10 +26,7 @@ public class NImage implements Serializable
 	  public NImage(PImage image)
 	  {
 		  this.image = image;
-		  buildHistograms();
-		  buildDominantValues();
-		  width = image.width;
-		  height = image.height;
+		  init();
 	  }
 	  
 	  
@@ -46,10 +43,17 @@ public class NImage implements Serializable
 	  public NImage(String filename)
 	  {
 	    imageFilename = filename;
-	    buildHistograms();
-	    buildDominantValues();
+	    init();
 	  }
 
+	  private void init()
+	  {
+		  buildHistograms();
+		  buildDominantValues();
+		  width = image.width;
+		  height = image.height;
+	  }
+	  
 
 	private void buildDominantValues() {
 		dominantHue = calcDominantValue(histogramHue);

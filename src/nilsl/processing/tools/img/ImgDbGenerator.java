@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nilsl.processing.lib.img.NImage;
+import nilsl.processing.lib.img.RecordImage;
 import nilsl.processing.lib.io.FileRepo;
 
 public class ImgDbGenerator {
@@ -22,8 +23,8 @@ public class ImgDbGenerator {
 			return;
 
 		List<String> filenames = FileRepo.listFiles(imagePath);
-		//List<RecordImage> images = new ArrayList<RecordImage>();
-		List<NImage> images = new ArrayList<NImage>();
+		List<RecordImage> images = new ArrayList<RecordImage>();
+		//List<NImage> images = new ArrayList<NImage>();
 		
 		int i=1;
 		
@@ -32,7 +33,7 @@ public class ImgDbGenerator {
 		for (String name : filenames) {
 			try {
 				System.out.printf("Processing Image %d of %d\n", i,filenames.size());
-				images.add(new NImage(name));			
+				images.add(new RecordImage(name));			
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

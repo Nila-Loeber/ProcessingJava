@@ -8,6 +8,7 @@ import org.apache.commons.math3.stat.descriptive.moment.Mean;
 
 import processing.core.PImage;
 import nilsl.processing.lib.img.NImage;
+import nilsl.processing.lib.img.RecordImage;
 
 /**
  * @author Nils
@@ -23,9 +24,7 @@ import nilsl.processing.lib.img.NImage;
  */
 public class LabelFilter implements FilterCommand {
 
-	final static int samplingDistance = 50;
-	final static int samplingRectSize = 25;
-	int qFactor = 500000;
+	
 
 	private int takeRectangularSample(PImage img) {
 		img.loadPixels();
@@ -53,9 +52,19 @@ public class LabelFilter implements FilterCommand {
 	 * @param nimage
 	 * @return
 	 */
-	private boolean isLabel(NImage nimage) {
+	public boolean isLabel(NImage nimage) {  // HACK: Should refactor to its own class in .lib.cv
+		
+		if (nimage instanceof RecordImage)	// isLabel is precomputed in RecordImage
+		{
+			return ((RecordImage)nimage).isLabel;
+		}
+		
+		// isLabel not precomputed; compute now		
 		boolean isLabel = true;
 
+		final int samplingDistance = nimage.width/12; // Based on experiments with w: 600. 50 is a good val here.   
+		final int samplingRectSize = samplingDistance/2;
+		
 		List<Integer> samples = new ArrayList<Integer>();
 		PImage pimg = nimage.GetImage();
 		int imgWidth = pimg.width;
@@ -95,8 +104,8 @@ public class LabelFilter implements FilterCommand {
 	}
 
 	@Override
-	public void apply(List<NImage> images) {
-		for (Iterator<NImage> i = images.iterator(); i.hasNext();) {
+	public void apply(List<? super NImage> images) {
+		for (Iterator<NImage> i = (Iterator<NImage>) images.iterator(); i.hasNext();) {
 			NImage image = i.next();
 			if (!isLabel(image))
 				i.remove();

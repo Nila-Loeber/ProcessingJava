@@ -8,8 +8,8 @@ import nilsl.processing.lib.img.comparators.HueComparator;
 public class OrderByHueFilter implements FilterCommand {
 
 	@Override
-	public void apply(List<NImage> images) {
-	images.sort(new HueComparator());
+	public void apply(List<? super NImage> images) {
+		((List<NImage>)images).sort(new HueComparator());
 		
 	}
 
