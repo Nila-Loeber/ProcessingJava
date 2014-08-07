@@ -24,6 +24,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 
 	public void draw() {
 		mosDrawer.draw();
+		super.draw();
 	}
 
 	protected Filterable imageProvider;
@@ -32,7 +33,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	private boolean copyMode = false;
 
 	public void setup() {
-		size(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
+		super.setup(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
 	}
 
 	public void handleSwap() {
@@ -63,6 +64,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	private void triggerRedraw() {
 		imageProvider.ApplyFilters();
 		mosDrawer.draw();
+		super.draw();
 	}
 
 	int calcCurrentPos(int x, int y) {
@@ -104,11 +106,13 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 			zoomFactor *= 2;
 			background(0);
 			((Zoomable) mosDrawer).zoom();
+			triggerRedraw();
 		}
 		if (key == '-') {
 			zoomFactor /= 2;
 			background(0);
 			((Zoomable) mosDrawer).unzoom();
+			triggerRedraw();
 		}
 		if (key == 'r') {
 			handleRandomize();

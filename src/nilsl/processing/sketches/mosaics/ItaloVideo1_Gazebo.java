@@ -12,6 +12,8 @@ import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.VideoClipInfo;
 import nilsl.processing.lib.twodim.imageproviders.VideoImageProvider;
 import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
+import nilsl.processing.lib.twodim.mosaicdrawers.TintDrawer;
+import nilsl.processing.lib.twodim.mosaicdrawers.TintInfo;
 
 public class ItaloVideo1_Gazebo extends MosaicEditorApplet {
 
@@ -19,13 +21,17 @@ private static final long serialVersionUID = 1L;
 
 	
 	public void setup() {
-		mosInfo.xdim = 4;
-		mosInfo.ydim = 4;
+		mosInfo.xdim = 2;
+		mosInfo.ydim = 2;
 				
-		mosInfo.imgSizeX = 480;
-		mosInfo.imgSizeY = 360;
+		mosInfo.imgSizeX = 960;
+		mosInfo.imgSizeY = 720;
+		
+		super.setup();
 		
 		mosDrawer = new DefaultMosaicDrawer(mosInfo);
+		mosDrawer.canvas=this.canvas;
+		//mosDrawer = new TintDrawer(mosInfo, new TintInfo(255, 255, 255, 200), 60);
 
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,3));
 
@@ -36,19 +42,20 @@ private static final long serialVersionUID = 1L;
 		
 		//mosDrawer.imageEnhancers.add(new CutupEnhancer(mosInfo.ydim));		
 		
-		VideoClipInfo clipInfo=new VideoClipInfo(new Interval(11*1000,120*1000),mosInfo.Size()*4);
+		//VideoClipInfo clipInfo1=new VideoClipInfo(new Interval(37*1000,38*1000),20);
+		VideoClipInfo clipInfo2=new VideoClipInfo(new Interval(37*1000,53*1000),4);
 		//VideoClipInfo clipInfo2=new VideoClipInfo(new Interval(40*1000,60*1000),mosInfo.Size()/2);
 		List<VideoClipInfo> clipInfos = new ArrayList<VideoClipInfo>();
-		clipInfos.add(clipInfo);
-		//clipInfos.add(clipInfo2);
-		imageProvider = new VideoImageProvider("c:\\data\\videos\\Gazebo - Masterpiece.flv",clipInfos);
+		//clipInfos.add(clipInfo1);
+		clipInfos.add(clipInfo2);
+		imageProvider = new VideoImageProvider("/Users/Nils/Documents/Processing/Video_Mosaic/Gazebo - I Like Chopin (WWF Club 9).mp4",clipInfos);
 		imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
 		imageProvider.ApplyFilters();
 		
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
-
-		super.setup();
+		
 	} 
+
 	
 }

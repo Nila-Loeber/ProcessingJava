@@ -34,7 +34,9 @@ public class DefaultMosaicDrawer extends EnhanceableMosaicDrawer2d implements Zo
 	@Override
 	public void draw() {
 		ResetCounter();
+		canvas.background(0);
 		do{
+			
 			PGraphics pg = parentApplet.createGraphics(imgXSize, imgYSize);
 			imageProvider.getNextImage(pg);
 			if (imageEnhancers.size()>0)
@@ -44,27 +46,22 @@ public class DefaultMosaicDrawer extends EnhanceableMosaicDrawer2d implements Zo
 					enhancer.Enhance(pg);
 				}
 			}
-			parentApplet.image(pg,counter.getCurX()*imgXSize, counter.getCurY()*imgYSize);
+			canvas.image(pg,counter.getCurX()*imgXSize, counter.getCurY()*imgYSize);
 			counter.inc();
 		}
 		while (!counter.eof() && imageProvider.hasNext());
-		
-		
-		
 	}
 
 	@Override
 	public void zoom() {
 		imgXSize*=2;
-	    imgYSize*=2;
-	    draw();
+	    imgYSize*=2;  
 	}
 
 	@Override
 	public void unzoom() {
 		imgXSize/=2;
 	    imgYSize/=2;
-	    draw();
 	}
 
 

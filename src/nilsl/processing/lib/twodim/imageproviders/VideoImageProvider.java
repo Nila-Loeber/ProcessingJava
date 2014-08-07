@@ -23,11 +23,6 @@ public class VideoImageProvider extends MultiImageProvider implements
 
 	private void GenerateImages(List<VideoClipInfo> clips) {	
 		clips.forEach(clipInfo -> images.addAll(GetImages(clipInfo)));   // TODO: test .parallelStream or .parallel for graet win
-//		for (VideoClipInfo clipInfo : clips)
-//		{
-//			List<NImage> newImages = GetImages(clipInfo);
-//			images.addAll(newImages);
-//		}
 	}
 
 	private List<NImage> GetImages(VideoClipInfo clip) {
@@ -35,6 +30,7 @@ public class VideoImageProvider extends MultiImageProvider implements
 		Movie video = new Movie(PAppletShim.getApplet(), filename);
 
 		List<NImage> results = new ArrayList<NImage>();
+		video.volume(0);
 		video.play();
 		video.read();
 		
