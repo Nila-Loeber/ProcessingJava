@@ -42,8 +42,8 @@ public class VideoImageProvider extends MultiImageProvider implements
 		video.read();
 		video.volume(0);
 		
-		float clipStart = clip.interval.getStartMillis()/1000;
-		float clipEnd = clip.interval.getEndMillis()/1000;
+		float clipStart = ((float)clip.interval.getStartMillis())/1000;
+		float clipEnd = ((float)clip.interval.getEndMillis())/1000;
 		float period = (clipEnd-clipStart)/clip.numPictures;
 		
 		for (int i=0; i<clip.numPictures; i++)

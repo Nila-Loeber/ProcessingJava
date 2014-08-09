@@ -18,7 +18,7 @@ import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintDrawer;
 import nilsl.processing.lib.twodim.mosaicdrawers.TintInfo;
 
-public class ItaloVideo3_GazeboAlternated extends MosaicEditorApplet {
+public class ItaloVideo4_ValerieDore extends MosaicEditorApplet {
 
 private static final long serialVersionUID = 1L;
 
@@ -43,26 +43,26 @@ private static final long serialVersionUID = 1L;
 		
 			
 		List<VideoClipInfo> clipInfos1 = Arrays.asList(
-				new VideoClipInfo(new Interval(600,2*1000),5),
+				new VideoClipInfo(new Interval(800,2*1000),6),
 				new VideoClipInfo(new Interval(26500,38*1000),5),
-				new VideoClipInfo(new Interval(60*1000,62*1000),5)
+				new VideoClipInfo(new Interval(60*1000,62*1000),5),
+				new VideoClipInfo(new Interval(68700,70*1000),5),
+				new VideoClipInfo(new Interval(94500,96*1000),5),
+				new VideoClipInfo(new Interval(1000,230*1000),8)
 				);
 			
-		List<VideoClipInfo> clipInfos2 = Arrays.asList(
-				new VideoClipInfo(new Interval(37000,42000),15)
-				
-				);
 		
 		VideoImageProvider vip1 = new VideoImageProvider(videoBasePath + "Valerie_Dore_-_The_Night_original_version_HD_HQ.mp4",clipInfos1);
 		vip1.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
 		vip1.ApplyFilters();
 		
-		VideoImageProvider vip2 = new VideoImageProvider("/Users/Nils/Documents/Processing/Video_Mosaic/Gazebo - I Like Chopin (WWF Club 9).mp4",clipInfos2);
-		vip2.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
-		vip2.ApplyFilters();
+//		VideoImageProvider vip2 = new VideoImageProvider("/Users/Nils/Documents/Processing/Video_Mosaic/Gazebo - I Like Chopin (WWF Club 9).mp4",clipInfos2);
+//		vip2.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
+//		vip2.ApplyFilters();
+//		
+		//imageProvider = new AlternatingImageProvider(Arrays.asList(vip1,vip2));
 		
-		imageProvider = new AlternatingImageProvider(Arrays.asList(vip1,vip2));
-		
+		imageProvider = vip1;
 		
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;

@@ -22,7 +22,6 @@ import nilsl.processing.lib.twodim.mosaicdrawers.TintInfo;
 import nilsl.processing.lib.txt.textproviders.CounterProvider;
 import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
-@SuppressWarnings("unused")
 public class Compost2_Tint extends MosaicEditorApplet {
 
 
