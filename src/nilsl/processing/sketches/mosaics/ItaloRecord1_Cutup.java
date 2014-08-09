@@ -7,6 +7,7 @@ import java.util.List;
 import processing.core.PImage;
 import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.enhancers.CutupEnhancer;
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
@@ -33,13 +34,14 @@ public class ItaloRecord1_Cutup extends MosaicEditorApplet {
 
 	
 	public void setup() {
-		mosInfo.xdim = 1;
-		mosInfo.ydim = 5;
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
+		settings.mosInfo.xdim = 1;
+		settings.mosInfo.ydim = 5;
 				
-		mosInfo.imgSizeX = 600;
-		mosInfo.imgSizeY = 120;
+		settings.mosInfo.imgSizeX = 600;
+		settings.mosInfo.imgSizeY = 120;
 		
-		mosDrawer = new CutupDrawer(mosInfo);
+		mosDrawer = new CutupDrawer(settings.mosInfo);
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,4));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,3));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
@@ -51,7 +53,7 @@ public class ItaloRecord1_Cutup extends MosaicEditorApplet {
 		
 		
 		
-		mosDrawer.imageEnhancers.add(new CutupEnhancer(mosInfo.ydim));		
+		mosDrawer.imageEnhancers.add(new CutupEnhancer(settings.mosInfo.ydim));		
 		
 		try {
 			imageProvider = new FilterableMultiImageProvider("c:\\data\\unsorted\\images.dat");
@@ -65,7 +67,7 @@ public class ItaloRecord1_Cutup extends MosaicEditorApplet {
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
-		super.setup();
+		super.setup(settings);
 	}
 
 

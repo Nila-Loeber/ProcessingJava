@@ -26,16 +26,21 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 		mosDrawer.draw();
 		super.draw();
 	}
-
+	
 	protected Filterable imageProvider;
-	protected MosaicInfo mosInfo = new MosaicInfo();
+	private MosaicInfo mosInfo;
 	protected EnhanceableMosaicDrawer2d mosDrawer;
 	private boolean copyMode = false;
 
-	public void setup() {
-		super.setup(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
+	public void setup(MosaicEditorAppletSettings settings) {
+		settings.width = settings.mosInfo.xdim * settings.mosInfo.imgSizeX;
+		settings.height = settings.mosInfo.ydim * settings.mosInfo.imgSizeY;
+		mosInfo = settings.mosInfo;
+		super.setup(settings);
 	}
 
+	
+	
 	public void handleSwap() {
 		if (oldPos == null) {
 			oldPos = getAbsImagePos(mouseX, mouseY);

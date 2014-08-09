@@ -23,13 +23,11 @@ public class FilterableMultiImageProvider extends MultiImageFileProvider impleme
 
 	@Override
 	public void setFilterProcessor(FilterProcessor processor) {
-		// TODO Auto-generated method stub
 		this.processor=processor;
 	}
 
 	@Override
 	public FilterProcessor getFilterProcessor() {
-		// TODO Auto-generated method stub
 		return processor;
 	}
 

@@ -3,6 +3,10 @@ package nilsl.processing.lib.twodim.imageproviders;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import nilsl.processing.lib.applet.NApplet;
 import nilsl.processing.lib.img.NImage;
 import nilsl.processing.lib.processingshims.PAppletShim;
 import processing.core.PApplet;
@@ -12,6 +16,8 @@ import processing.video.Movie;
 public class VideoImageProvider extends MultiImageProvider implements
 		Filterable {
 
+	static final Logger logger = LogManager.getLogger(VideoImageProvider.class.getName()); 
+	
 	private FilterProcessor processor;
 	private String filename;
 
@@ -19,6 +25,7 @@ public class VideoImageProvider extends MultiImageProvider implements
 		super();
 		this.filename = filename;
 		GenerateImages(clips);
+		
 	}
 
 	private void GenerateImages(List<VideoClipInfo> clips) {	
@@ -30,10 +37,10 @@ public class VideoImageProvider extends MultiImageProvider implements
 		Movie video = new Movie(PAppletShim.getApplet(), filename);
 
 		List<NImage> results = new ArrayList<NImage>();
-		video.volume(0);
+		
 		video.play();
 		video.read();
-		
+		video.volume(0);
 		
 		float clipStart = clip.interval.getStartMillis()/1000;
 		float clipEnd = clip.interval.getEndMillis()/1000;
@@ -41,7 +48,7 @@ public class VideoImageProvider extends MultiImageProvider implements
 		
 		for (int i=0; i<clip.numPictures; i++)
 		{
-			//System.out.println("Jumping to:" + (clipStart+i*period));
+			logger.trace(String.format("Generating Frame %d of %d. Jumping to: %f",i+1,clip.numPictures,(clipStart+i*period)));
 			video.jump(clipStart+i*period);
 			if (video.available()) video.read();
 			PImage pImage = PAppletShim.getApplet().createImage(video.width,video.height,PApplet.RGB); // TODO		

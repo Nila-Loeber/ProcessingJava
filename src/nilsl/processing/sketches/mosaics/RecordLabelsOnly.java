@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.LabelFilter;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
@@ -20,14 +21,14 @@ public class RecordLabelsOnly extends MosaicEditorApplet {
 	Integer newPos = null;
 
 	public void setup() {
-		mosInfo.imgSizeX = 200;
-		mosInfo.imgSizeY = 200;
-		mosInfo.xdim = 5;
-		mosInfo.ydim = 5;
-
-		size(mosInfo.xdim * mosInfo.imgSizeX, mosInfo.ydim * mosInfo.imgSizeY);
-
-		mosDrawer = new DefaultMosaicDrawer(mosInfo);
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
+		
+		settings.mosInfo.imgSizeX = 200;
+		settings.mosInfo.imgSizeY = 200;
+		settings.mosInfo.xdim = 5;
+		settings.mosInfo.ydim = 5;
+	
+		mosDrawer = new DefaultMosaicDrawer(settings.mosInfo);
 
 		// List<String> files = FileRepo.listFiles("c:\\data\\unsorted");
 		//

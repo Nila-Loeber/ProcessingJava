@@ -7,6 +7,7 @@ import java.util.List;
 import processing.core.PImage;
 import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.enhancers.TypoEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
@@ -24,15 +25,17 @@ public class Compost1 extends MosaicEditorApplet {
 
 	
 	public void setup() {
-		mosInfo.imgSizeX = 245;
-		mosInfo.imgSizeY = 326;
-		mosInfo.xdim = 1;
-		mosInfo.ydim = 1;
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
+		
+		settings.mosInfo.imgSizeX = 245;
+		settings.mosInfo.imgSizeY = 326;
+		settings.mosInfo.xdim = 1;
+		settings.mosInfo.ydim = 1;
 			
 		PImage overlayImage = loadImage("c:\\data\\overlays\\blacksquare.png");
 		//ImageEnhancer blackSquare = new ImageOverlayEnhancer(overlayImage);
 		
-		mosDrawer = new DefaultMosaicDrawer(mosInfo);
+		mosDrawer = new DefaultMosaicDrawer(settings.mosInfo);
 		
 		//mosDrawer.imageEnhancers.add(new ZoomEnhancer(120,120,40));
 		
@@ -62,7 +65,7 @@ public class Compost1 extends MosaicEditorApplet {
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
-		super.setup();
+		super.setup(settings);
 		
 	}
 

@@ -7,6 +7,7 @@ import java.util.List;
 import processing.core.PImage;
 import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.enhancers.CutupEnhancer;
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
@@ -32,21 +33,22 @@ public class Compost3_Cutup extends MosaicEditorApplet {
 
 	
 	public void setup() {
-		mosInfo.xdim = 1;
-		mosInfo.ydim = 7;
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
+		settings.mosInfo.xdim = 1;
+		settings.mosInfo.ydim = 7;
 				
-		//mosInfo.imgSizeX = 245;
-		mosInfo.imgSizeX = (int) (1224/1.5);
-		// mosInfo.imgSizeY = 326;
-		mosInfo.imgSizeY = (int) (1632/1.5/mosInfo.ydim);
+		//settings.mosInfo.imgSizeX = 245;
+		settings.mosInfo.imgSizeX = (int) (1224/1.5);
+		// settings.mosInfo.imgSizeY = 326;
+		settings.mosInfo.imgSizeY = (int) (1632/1.5/settings.mosInfo.ydim);
 		
-		mosDrawer = new CutupDrawer(mosInfo);
+		mosDrawer = new CutupDrawer(settings.mosInfo);
 		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,4));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,3));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
 		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,5));
 		
-		mosDrawer.imageEnhancers.add(new CutupEnhancer(mosInfo.ydim));		
+		mosDrawer.imageEnhancers.add(new CutupEnhancer(settings.mosInfo.ydim));		
 		
 		try {
 			imageProvider = new FilterableMultiImageProvider("c:\\data\\compost\\small\\images.dat");
@@ -60,7 +62,7 @@ public class Compost3_Cutup extends MosaicEditorApplet {
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
-		super.setup();
+		super.setup(settings);
 	}
 
 

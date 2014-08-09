@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.enhancers.CutupEnhancer;
 import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
@@ -16,13 +17,14 @@ import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 @SuppressWarnings("serial")
 public class ItaloRecord2_CutupMosaic extends MosaicEditorApplet {
 	public void setup() {
-		mosInfo.xdim = 6;
-		mosInfo.ydim = 4;
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
+		settings.mosInfo.xdim = 6;
+		settings.mosInfo.ydim = 4;
 
-		mosInfo.imgSizeX = 600;
-		mosInfo.imgSizeY = 600;
+		settings.mosInfo.imgSizeX = 600;
+		settings.mosInfo.imgSizeY = 600;
 
-		mosDrawer = new DefaultMosaicDrawer(mosInfo);
+		mosDrawer = new DefaultMosaicDrawer(settings.mosInfo);
 		// mosDrawer.imageEnhancers.add(new
 		// ProcessingFilterEnhancer(PShader.POSTERIZE, 4));
 		// mosDrawer.imageEnhancers.add(new
@@ -46,6 +48,6 @@ public class ItaloRecord2_CutupMosaic extends MosaicEditorApplet {
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
-		super.setup();
+		super.setup(settings);
 	}
 }

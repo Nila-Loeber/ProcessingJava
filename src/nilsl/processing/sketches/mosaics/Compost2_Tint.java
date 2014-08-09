@@ -7,6 +7,7 @@ import java.util.List;
 import processing.core.PImage;
 import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
 import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
@@ -29,12 +30,13 @@ public class Compost2_Tint extends MosaicEditorApplet {
 
 	
 	public void setup() {
-		mosInfo.imgSizeX = 245;
-		//mosInfo.imgSizeX = (int) (1224/1.5);
-		mosInfo.imgSizeY = 326;
-		//mosInfo.imgSizeY = (int) (1632/1.5);
-		mosInfo.xdim = 3;
-		mosInfo.ydim = 3;
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
+		settings.mosInfo.imgSizeX = 245;
+		//settings.mosInfo.imgSizeX = (int) (1224/1.5);
+		settings.mosInfo.imgSizeY = 326;
+		//settings.mosInfo.imgSizeY = (int) (1632/1.5);
+		settings.mosInfo.xdim = 3;
+		settings.mosInfo.ydim = 3;
 		
 		colorMode(HSB);
 		
@@ -45,7 +47,7 @@ public class Compost2_Tint extends MosaicEditorApplet {
 			tintInfos.add(new TintInfo(i*20, 255, 255, 255f));
 		}
 		
-		mosDrawer = new TintDrawer(mosInfo,tintInfos,mosInfo.xdim*mosInfo.ydim,1);
+		mosDrawer = new TintDrawer(settings.mosInfo,tintInfos,settings.mosInfo.xdim*settings.mosInfo.ydim,1);
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,2));
 		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
 		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,0));
@@ -65,7 +67,7 @@ public class Compost2_Tint extends MosaicEditorApplet {
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
-		super.setup();
+		super.setup(settings);
 	}
 
 

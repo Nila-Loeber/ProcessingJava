@@ -11,10 +11,6 @@ public class ModularCounter1d implements Counter1d {
 		this.modulus = modulus;
 	}
 
-	public ModularCounter1d() {
-		this.step = 1;
-	}
-
 	@Override
 	public int getCurPos() {
 		return counter;

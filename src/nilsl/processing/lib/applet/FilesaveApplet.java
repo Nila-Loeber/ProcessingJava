@@ -7,7 +7,7 @@ import java.util.Date;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
-public class FilesaveApplet extends PApplet {
+public class FilesaveApplet extends NApplet {
 	/**
 	 * 
 	 */
@@ -35,9 +35,10 @@ public class FilesaveApplet extends PApplet {
 		}
 	}
 
-	public void setup(int x, int y) {
-		size(x, y);
-		canvas = createGraphics(x, y);
+	public void setup(FilesaveAppletSettings settings) {
+		super.setup(settings);
+		canvas = createGraphics(settings.width, settings.height);
+		baseDir = settings.filePath;
 	}
 
 	public void draw() {	

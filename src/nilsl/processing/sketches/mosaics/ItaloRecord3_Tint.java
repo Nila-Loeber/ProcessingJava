@@ -7,6 +7,7 @@ import java.util.List;
 import processing.core.PImage;
 import processing.opengl.PShader;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
+import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import nilsl.processing.lib.img.enhancers.ImageOverlayEnhancer;
 import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
@@ -34,12 +35,13 @@ public class ItaloRecord3_Tint extends MosaicEditorApplet {
 
 	
 	public void setup() {
-		mosInfo.imgSizeX = 600;
-		//mosInfo.imgSizeX = (int) (1224/1.5);
-		mosInfo.imgSizeY = 600;
-		//mosInfo.imgSizeY = (int) (1632/1.5);
-		mosInfo.xdim = 9;
-		mosInfo.ydim = 6;
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
+		settings.mosInfo.imgSizeX = 600;
+		//settings.mosInfo.imgSizeX = (int) (1224/1.5);
+		settings.mosInfo.imgSizeY = 600;
+		//settings.mosInfo.imgSizeY = (int) (1632/1.5);
+		settings.mosInfo.xdim = 9;
+		settings.mosInfo.ydim = 6;
 		
 		colorMode(HSB);
 		
@@ -50,13 +52,13 @@ public class ItaloRecord3_Tint extends MosaicEditorApplet {
 			tintInfos.add(new TintInfo(i*20+50, 255, 255, 255f));
 		}
 		
-		//mosDrawer = new TintDrawer(mosInfo,tintInfos,mosInfo.xdim*mosInfo.ydim,1);
-		mosDrawer = new DefaultMosaicDrawer(mosInfo);
+		//mosDrawer = new TintDrawer(mosInfo,tintInfos,settings.mosInfo.xdim*settings.mosInfo.ydim,1);
+		mosDrawer = new DefaultMosaicDrawer(settings.mosInfo);
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,4));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,0));
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR ,5));
-		//mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",60,100,100,color(255,0,255,127),new CounterProvider(mosInfo.xdim*mosInfo.ydim)));
+		//mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",60,100,100,color(255,0,255,127),new CounterProvider(settings.mosInfo.xdim*settings.mosInfo.ydim)));
 		
 		FilterCommand sizeFilter = new SizeFilter(600,600);
 		//FilterCommand briFilter = new OrderByBriFilter(false);
@@ -81,7 +83,7 @@ public class ItaloRecord3_Tint extends MosaicEditorApplet {
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
-		super.setup();
+		super.setup(settings);
 	}
 
 
