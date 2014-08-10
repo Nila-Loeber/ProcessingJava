@@ -1,12 +1,16 @@
-package nilsl.processing.lib.twodim.mosaicdrawers;
+package nilsl.processing.lib.twodim.drawers.mosaic;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import nilsl.processing.lib.applet.NApplet;
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import nilsl.processing.lib.twodim.imageproviders.Resetable;
 import processing.core.PGraphics;
 import nilsl.processing.lib.twodim.counters.Counter2d;
 import nilsl.processing.lib.twodim.counters.DefaultCounter2d;
 
-public class DefaultMosaicDrawer extends EnhanceableMosaicDrawer2d implements Zoomable {
+public class DefaultMosaicDrawer extends EnhanceableMosaicDrawer2d  {
 
 	protected Counter2d counter;
 	protected int imgXSize;
@@ -14,7 +18,7 @@ public class DefaultMosaicDrawer extends EnhanceableMosaicDrawer2d implements Zo
 	protected int maxX;
 	protected int maxY;
 	
-	
+	static final Logger logger = LogManager.getLogger(DefaultMosaicDrawer.class.getPackage().getName()); 
 
 	protected void ResetCounter()
 	{
@@ -33,6 +37,7 @@ public class DefaultMosaicDrawer extends EnhanceableMosaicDrawer2d implements Zo
 	
 	@Override
 	public void draw() {
+		logger.info("Draw called.");
 		ResetCounter();
 		canvas.background(0);
 		do{
@@ -47,22 +52,9 @@ public class DefaultMosaicDrawer extends EnhanceableMosaicDrawer2d implements Zo
 				}
 			}
 			canvas.image(pg,counter.getCurX()*imgXSize, counter.getCurY()*imgYSize);
+			logger.trace(String.format("Drawing tile %d:%d called.",counter.getCurX(),counter.getCurY() ));
 			counter.inc();
 		}
 		while (!counter.eof() && imageProvider.hasNext());
-	}
-
-	@Override
-	public void zoom() {
-		imgXSize*=2;
-	    imgYSize*=2;  
-	}
-
-	@Override
-	public void unzoom() {
-		imgXSize/=2;
-	    imgYSize/=2;
-	}
-
-
+	}	
 }

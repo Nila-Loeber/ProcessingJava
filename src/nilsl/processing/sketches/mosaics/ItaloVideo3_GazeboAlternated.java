@@ -6,32 +6,38 @@ import java.util.List;
 
 import org.joda.time.Interval;
 
+import nilsl.processing.lib.applet.FilesaveApplet;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.filters.FilterCommand;
+import nilsl.processing.lib.twodim.drawers.mosaic.DefaultMosaicDrawer;
+import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
+import nilsl.processing.lib.twodim.drawers.mosaic.TintDrawer;
+import nilsl.processing.lib.twodim.drawers.mosaic.TintInfo;
 import nilsl.processing.lib.twodim.imageproviders.AlternatingImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.VideoClipInfo;
 import nilsl.processing.lib.twodim.imageproviders.VideoImageProvider;
-import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
-import nilsl.processing.lib.twodim.mosaicdrawers.TintDrawer;
-import nilsl.processing.lib.twodim.mosaicdrawers.TintInfo;
 
-public class ItaloVideo3_GazeboAlternated extends MosaicEditorApplet {
+public class ItaloVideo3_GazeboAlternated extends FilesaveApplet {
 
 private static final long serialVersionUID = 1L;
 
+	DefaultMosaicDrawer mosDrawer;
 	
 	public void setup() {
 		String videoBasePath = "/Users/Nils/Documents/Kunst/Italo-Disco/Material/Video/";
 		
-		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
-		settings.mosInfo.xdim = 5;
-		settings.mosInfo.ydim = 5;
-				
-		settings.mosInfo.imgSizeX = 1280;
-		settings.mosInfo.imgSizeY = 720;
+		MosaicInfo mosInfo = new MosaicInfo();
+		mosInfo.xdim = 5;
+		mosInfo.ydim = 5;
+	
+		mosInfo.imgSizeX = 1280;
+		mosInfo.imgSizeY = 720;
+		
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings(mosInfo);
+		
 		
 		settings.filePath="/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/";
 		
@@ -61,13 +67,20 @@ private static final long serialVersionUID = 1L;
 		vip2.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
 		vip2.ApplyFilters();
 		
-		imageProvider = new AlternatingImageProvider(Arrays.asList(vip1,vip2));
+		AlternatingImageProvider imageProvider = new AlternatingImageProvider(Arrays.asList(vip1,vip2));
 		
 		
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
-		mosDrawer.parentApplet = this;
-		
+		mosDrawer.parentApplet = this;		
 	} 
+	
+	@Override
+	public void draw()
+	{
+		mosDrawer.draw();
+		super.draw();
+	}
+	
 
 	
 }

@@ -10,7 +10,7 @@ import processing.core.PGraphics;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class AlternatingImageProvider extends ImageProvider implements Filterable, Resetable {
+public class AlternatingImageProvider extends ImageProvider implements Resetable {
 
 	private Counter1d counter;
 	private List<ImageProvider> imageProviders;
@@ -44,25 +44,6 @@ public class AlternatingImageProvider extends ImageProvider implements Filterabl
 	public boolean hasNext() {
 		return imageProviders.stream().anyMatch(i -> i.hasNext());
 	}
-
-
-	private FilterProcessor processor;
-
-	@Override
-	public void ApplyFilters() {
-		
-	}
-
-	@Override
-	public void setFilterProcessor(FilterProcessor processor) {
-		this.processor=processor;
-	}
-
-	@Override
-	public FilterProcessor getFilterProcessor() {
-		return processor;
-	}
-
 
 	@Override
 	public void reset() {

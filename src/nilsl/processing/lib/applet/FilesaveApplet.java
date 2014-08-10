@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
@@ -16,6 +19,10 @@ public class FilesaveApplet extends NApplet {
 	private String baseDir = "C:\\data\\compositions\\";
 	private String baseFilename;
 	protected PGraphics canvas;
+	protected float zoomFactor=1;
+
+	static final Logger logger = LogManager.getLogger(NApplet.class
+			.getPackage().getName());
 
 	public FilesaveApplet() {
 		super();
@@ -33,6 +40,16 @@ public class FilesaveApplet extends NApplet {
 		if (key == 's') {
 			HandleSave();
 		}
+		if (key == '+') {
+			zoomFactor *= 2;
+			background(0);
+			draw();
+		}
+		if (key == '-') {
+			zoomFactor /= 2;
+			background(0);
+			draw();
+		}
 	}
 
 	public void setup(FilesaveAppletSettings settings) {
@@ -41,10 +58,13 @@ public class FilesaveApplet extends NApplet {
 		baseDir = settings.filePath;
 	}
 
-	public void draw() {	
-			canvas.loadPixels();
-			canvas.updatePixels();
-			image(canvas, 0, 0, canvas.width, canvas.height);	
+	public void draw() {
+		scale(zoomFactor);
+		logger.trace("Draw() called");
+		canvas.loadPixels();
+		canvas.updatePixels();
+		image(canvas, 0, 0, canvas.width, canvas.height);
+		scale(1/zoomFactor);
 	}
 
 }

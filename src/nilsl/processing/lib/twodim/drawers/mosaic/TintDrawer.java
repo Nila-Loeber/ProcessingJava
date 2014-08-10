@@ -1,4 +1,4 @@
-package nilsl.processing.lib.twodim.mosaicdrawers;
+package nilsl.processing.lib.twodim.drawers.mosaic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import processing.core.PGraphics;
 import nilsl.processing.lib.twodim.counters.Counter2d;
 import nilsl.processing.lib.twodim.counters.DefaultCounter2d;
 
-public class TintDrawer extends EnhanceableMosaicDrawer2d implements Zoomable {
+public class TintDrawer extends EnhanceableMosaicDrawer2d {
 
 	private Counter2d counter;
 	private int imgXSize;
@@ -75,19 +75,4 @@ public class TintDrawer extends EnhanceableMosaicDrawer2d implements Zoomable {
 
 		}
 	}
-
-	@Override
-	public void zoom() {
-		imgXSize *= 2;
-		imgYSize *= 2;
-		draw();
-	}
-
-	@Override
-	public void unzoom() {
-		imgXSize /= 2;
-		imgYSize /= 2;
-		draw();
-	}
-
 }

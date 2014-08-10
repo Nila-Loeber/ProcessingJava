@@ -1,4 +1,4 @@
-package nilsl.processing.lib.twodim.mosaicdrawers;
+package nilsl.processing.lib.twodim.drawers.mosaic;
 
 import java.util.ArrayList;
 import java.util.List;

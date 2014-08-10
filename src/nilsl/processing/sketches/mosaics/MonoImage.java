@@ -1,9 +1,9 @@
 package nilsl.processing.sketches.mosaics;
 
+import nilsl.processing.lib.twodim.drawers.mosaic.DefaultMosaicDrawer;
+import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 import nilsl.processing.lib.twodim.imageproviders.MonoImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.Resetable;
-import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
-import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
 import processing.core.*;
 
 public class MonoImage extends PApplet implements Resetable{

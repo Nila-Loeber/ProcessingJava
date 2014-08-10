@@ -11,14 +11,14 @@ import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
+import nilsl.processing.lib.twodim.drawers.mosaic.DefaultMosaicDrawer;
+import nilsl.processing.lib.twodim.drawers.mosaic.TintDrawer;
+import nilsl.processing.lib.twodim.drawers.mosaic.TintInfo;
 import nilsl.processing.lib.twodim.imageproviders.AlternatingImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.VideoClipInfo;
 import nilsl.processing.lib.twodim.imageproviders.VideoImageProvider;
-import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
-import nilsl.processing.lib.twodim.mosaicdrawers.TintDrawer;
-import nilsl.processing.lib.twodim.mosaicdrawers.TintInfo;
 
 public class ItaloVideo6_ChopinOfficial extends MosaicEditorApplet {
 

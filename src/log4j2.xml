@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
 	<Appenders>
-		<Console name="CONSOLE" target="SYSTEM_OUT"> 
-		<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} - %msg%n" /> 
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} - %msg%n" />
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Root level="trace">
+		<Root level="ERROR">
 			<AppenderRef ref="CONSOLE" />
 		</Root>
 		<logger
 			name="nilsl.processing.lib.twodim.imageproviders.AlternatingImageProvider"
 			level="ERROR" />
-		<logger name="nilsl.processing.lib.applet.NApplet" level="TRACE" />
+		<logger name="nilsl.processing.lib.applet.NApplet" level="ERROR" />
+		<logger name="nilsl.processing.lib.applet.mosaic" level="TRACE">
+			<AppenderRef ref="CONSOLE" />
+		</logger>
+		<logger name="nilsl.processing.lib.twodim.drawers.mosaic" level="INFO" additivity="false">
+			<AppenderRef ref="CONSOLE" />
+		</logger>
 		<logger name="nilsl.processing.lib.twodim.imageproviders"
 			level="TRACE" />
 	</Loggers>

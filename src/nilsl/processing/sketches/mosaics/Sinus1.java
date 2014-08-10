@@ -12,10 +12,11 @@ import nilsl.processing.lib.img.enhancers.ProcessingFilterEnhancer;
 import nilsl.processing.lib.img.enhancers.TypoEnhancer;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.OrderByBriFilter;
+import nilsl.processing.lib.twodim.drawers.mosaic.DefaultMosaicDrawer;
+import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
-import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 public class Sinus1 extends MosaicEditorApplet {
@@ -25,12 +26,16 @@ public class Sinus1 extends MosaicEditorApplet {
 
 	
 	public void setup() {
-		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
 		
-		settings.mosInfo.imgSizeX = 1000/4;
-		settings.mosInfo.imgSizeY = 720/4;
-		settings.mosInfo.xdim = 6;
-		settings.mosInfo.ydim = 6;
+		MosaicInfo mosInfo = new MosaicInfo();
+		
+		mosInfo.imgSizeX = 1000/4;
+		mosInfo.imgSizeY = 720/4;
+		mosInfo.xdim = 6;
+		mosInfo.ydim = 6;
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings(mosInfo);
+		
+		
 	
 		super.setup(settings);
 		

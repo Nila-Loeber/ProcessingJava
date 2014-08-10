@@ -1,15 +1,18 @@
 package nilsl.processing.lib.applet.mosaic;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import nilsl.processing.lib.applet.FilesaveApplet;
+import nilsl.processing.lib.applet.NApplet;
 import nilsl.processing.lib.img.filters.CopyFilter;
 import nilsl.processing.lib.img.filters.NewImageFilter;
 import nilsl.processing.lib.img.filters.RandomizeFilter;
 import nilsl.processing.lib.img.filters.RemoveFilter;
 import nilsl.processing.lib.img.filters.SwapFilter;
+import nilsl.processing.lib.twodim.drawers.mosaic.EnhanceableMosaicDrawer2d;
+import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 import nilsl.processing.lib.twodim.imageproviders.Filterable;
-import nilsl.processing.lib.twodim.mosaicdrawers.EnhanceableMosaicDrawer2d;
-import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
-import nilsl.processing.lib.twodim.mosaicdrawers.Zoomable;
 
 public abstract class MosaicEditorApplet extends FilesaveApplet {
 
@@ -20,8 +23,9 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	protected Integer oldPos = null;
 	protected Integer newPos = null;
 
-	private float zoomFactor = 1;
-
+	static final Logger logger = LogManager.getLogger(MosaicEditorApplet.class
+			.getPackage().getName());
+	
 	public void draw() {
 		mosDrawer.draw();
 		super.draw();
@@ -33,8 +37,6 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	private boolean copyMode = false;
 
 	public void setup(MosaicEditorAppletSettings settings) {
-		settings.width = settings.mosInfo.xdim * settings.mosInfo.imgSizeX;
-		settings.height = settings.mosInfo.ydim * settings.mosInfo.imgSizeY;
 		mosInfo = settings.mosInfo;
 		super.setup(settings);
 	}
@@ -68,7 +70,6 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 
 	private void triggerRedraw() {
 		imageProvider.ApplyFilters();
-		mosDrawer.draw();
 		super.draw();
 	}
 
@@ -80,6 +81,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 		int pickupImgXPos = (int) (x / (mosInfo.imgSizeX * zoomFactor));
 		int pickupImgYPos = (int) (y / (mosInfo.imgSizeY * zoomFactor));
 		int pickupListPos = calcCurrentPos(pickupImgXPos, pickupImgYPos);
+		logger.trace(String.format("getAbsImagePos x: %d y: %d result: %d", pickupImgXPos, pickupImgYPos,pickupListPos));
 		return pickupListPos;
 	}
 
@@ -106,19 +108,7 @@ public abstract class MosaicEditorApplet extends FilesaveApplet {
 	}
 
 	@Override
-	public void keyPressed() {
-		if (key == '+') {
-			zoomFactor *= 2;
-			background(0);
-			((Zoomable) mosDrawer).zoom();
-			triggerRedraw();
-		}
-		if (key == '-') {
-			zoomFactor /= 2;
-			background(0);
-			((Zoomable) mosDrawer).unzoom();
-			triggerRedraw();
-		}
+	public void keyPressed() {		
 		if (key == 'r') {
 			handleRandomize();
 		}

@@ -8,10 +8,10 @@ import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.filters.FilterCommand;
 import nilsl.processing.lib.img.filters.LabelFilter;
+import nilsl.processing.lib.twodim.drawers.mosaic.DefaultMosaicDrawer;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
-import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
 
 public class RecordLabelsOnly extends MosaicEditorApplet {
 

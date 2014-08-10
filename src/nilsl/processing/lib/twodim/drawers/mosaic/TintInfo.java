@@ -1,4 +1,4 @@
-package nilsl.processing.lib.twodim.mosaicdrawers;
+package nilsl.processing.lib.twodim.drawers.mosaic;
 
 public class TintInfo {
 	public float v1;

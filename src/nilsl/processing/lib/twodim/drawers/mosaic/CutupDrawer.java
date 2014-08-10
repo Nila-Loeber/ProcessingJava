@@ -1,4 +1,4 @@
-package nilsl.processing.lib.twodim.mosaicdrawers;
+package nilsl.processing.lib.twodim.drawers.mosaic;
 
 import nilsl.processing.lib.img.enhancers.ImageEnhancer;
 import processing.core.PGraphics;

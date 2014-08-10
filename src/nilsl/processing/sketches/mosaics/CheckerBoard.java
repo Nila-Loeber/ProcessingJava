@@ -1,8 +1,8 @@
 package nilsl.processing.sketches.mosaics;
 
+import nilsl.processing.lib.twodim.drawers.mosaic.DefaultMosaicDrawer;
+import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 import nilsl.processing.lib.twodim.imageproviders.CheckerBoardImageProvider;
-import nilsl.processing.lib.twodim.mosaicdrawers.DefaultMosaicDrawer;
-import nilsl.processing.lib.twodim.mosaicdrawers.MosaicInfo;
 import processing.core.*;
 
 public class CheckerBoard extends PApplet {
