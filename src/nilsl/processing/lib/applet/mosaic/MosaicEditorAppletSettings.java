@@ -1,9 +1,9 @@
 package nilsl.processing.lib.applet.mosaic;
 
-import nilsl.processing.lib.applet.FilesaveAppletSettings;
+import nilsl.processing.lib.applet.ViewerAppletSettings;
 import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 
-public class MosaicEditorAppletSettings extends FilesaveAppletSettings {
+public class MosaicEditorAppletSettings extends ViewerAppletSettings {
 	public MosaicInfo mosInfo;
 	public MosaicEditorAppletSettings(MosaicInfo mosInfo)
 	{

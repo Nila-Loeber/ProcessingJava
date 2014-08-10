@@ -3,7 +3,7 @@ package nilsl.processing.lib.applet.mosaic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import nilsl.processing.lib.applet.FilesaveApplet;
+import nilsl.processing.lib.applet.ViewerApplet;
 import nilsl.processing.lib.applet.NApplet;
 import nilsl.processing.lib.img.filters.CopyFilter;
 import nilsl.processing.lib.img.filters.NewImageFilter;
@@ -14,7 +14,7 @@ import nilsl.processing.lib.twodim.drawers.mosaic.EnhanceableMosaicDrawer2d;
 import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 import nilsl.processing.lib.twodim.imageproviders.Filterable;
 
-public abstract class MosaicEditorApplet extends FilesaveApplet {
+public abstract class MosaicEditorApplet extends ViewerApplet {
 
 	/**
 	 * 

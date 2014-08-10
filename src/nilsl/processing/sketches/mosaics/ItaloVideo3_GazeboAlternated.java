@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.joda.time.Interval;
 
-import nilsl.processing.lib.applet.FilesaveApplet;
+import nilsl.processing.lib.applet.ViewerApplet;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorApplet;
 import nilsl.processing.lib.applet.mosaic.MosaicEditorAppletSettings;
 import nilsl.processing.lib.img.filters.FilterCommand;
@@ -20,7 +20,7 @@ import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.VideoClipInfo;
 import nilsl.processing.lib.twodim.imageproviders.VideoImageProvider;
 
-public class ItaloVideo3_GazeboAlternated extends FilesaveApplet {
+public class ItaloVideo3_GazeboAlternated extends ViewerApplet {
 
 private static final long serialVersionUID = 1L;
 

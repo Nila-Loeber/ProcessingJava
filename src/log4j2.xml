@@ -12,11 +12,18 @@
 		<logger
 			name="nilsl.processing.lib.twodim.imageproviders.AlternatingImageProvider"
 			level="ERROR" />
-		<logger name="nilsl.processing.lib.applet.NApplet" level="ERROR" />
-		<logger name="nilsl.processing.lib.applet.mosaic" level="TRACE">
+		<logger name="nilsl.processing.lib.applet" level="INFO">
 			<AppenderRef ref="CONSOLE" />
 		</logger>
-		<logger name="nilsl.processing.lib.twodim.drawers.mosaic" level="INFO" additivity="false">
+		<logger name="nilsl.processing.lib.applet.mosaic" level="INFO">
+			<AppenderRef ref="CONSOLE" />
+		</logger>
+		<logger name="nilsl.processing.lib.twodim.drawers.mosaic"
+			level="INFO" additivity="false">
+			<AppenderRef ref="CONSOLE" />
+		</logger>
+		<logger name="nilsl.processing.lib.twodim.drawers" level="INFO"
+			additivity="false">
 			<AppenderRef ref="CONSOLE" />
 		</logger>
 		<logger name="nilsl.processing.lib.twodim.imageproviders"

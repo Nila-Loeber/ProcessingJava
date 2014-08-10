@@ -7,7 +7,7 @@ import processing.core.PApplet;
 
 public class NApplet extends PApplet {
 	
-	static final Logger logger = LogManager.getLogger(NApplet.class.getName()); 
+	static final Logger logger = LogManager.getLogger(NApplet.class.getPackage().getName()); 
 	
 	public void setup(NAppletSettings settings) {
 		size(settings.width, settings.height);

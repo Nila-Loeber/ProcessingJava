@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
-public class FilesaveApplet extends NApplet {
+public class ViewerApplet extends NApplet {
 	/**
 	 * 
 	 */
@@ -21,10 +21,10 @@ public class FilesaveApplet extends NApplet {
 	protected PGraphics canvas;
 	protected float zoomFactor=1;
 
-	static final Logger logger = LogManager.getLogger(NApplet.class
+	static final Logger logger = LogManager.getLogger(ViewerApplet.class
 			.getPackage().getName());
 
-	public FilesaveApplet() {
+	public ViewerApplet() {
 		super();
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmm");
 		Date date = new Date();
@@ -50,9 +50,13 @@ public class FilesaveApplet extends NApplet {
 			background(0);
 			draw();
 		}
+		if (key == 'l') {
+			if (this.looping) noLoop(); else loop();
+		}
+		
 	}
 
-	public void setup(FilesaveAppletSettings settings) {
+	public void setup(ViewerAppletSettings settings) {
 		super.setup(settings);
 		canvas = createGraphics(settings.width, settings.height);
 		baseDir = settings.filePath;
