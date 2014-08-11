@@ -12,6 +12,6 @@ public class NApplet extends PApplet {
 	public void setup(NAppletSettings settings) {
 		size(settings.width, settings.height);
 		
-		logger.trace(String.format("Size set to %d * %d", settings.width, settings.height));
+		logger.info(String.format("Size set to %d * %d", settings.width, settings.height));
 	}
 }

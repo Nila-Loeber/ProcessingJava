@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import nilsl.processing.lib.twodim.drawers.Drawer;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +22,7 @@ public class ViewerApplet extends NApplet {
 	private String baseFilename;
 	protected PGraphics canvas;
 	protected float zoomFactor=1;
+	private Drawer drawer;
 
 	static final Logger logger = LogManager.getLogger(ViewerApplet.class
 			.getPackage().getName());
@@ -37,22 +40,41 @@ public class ViewerApplet extends NApplet {
 	}
 
 	public void keyPressed() {
-		if (key == 's') {
+		switch (key)
+		{
+		case 's':
 			HandleSave();
-		}
-		if (key == '+') {
+		break;
+		case '+':
 			zoomFactor *= 2;
 			background(0);
 			draw();
-		}
-		if (key == '-') {
+			break;
+		
+		case '-':
 			zoomFactor /= 2;
 			background(0);
 			draw();
-		}
-		if (key == 'l') {
+			break;
+		
+		case 'l': 
 			if (this.looping) noLoop(); else loop();
+			break;
+		
+		case 'm':
+			for (int i = 0; i < 10; i++) {
+				draw();
+				HandleSave();
+			}
+			break;
+		default:
+			super.keyPressed();
+			break;	
 		}
+		
+		
+		
+		
 		
 	}
 
@@ -60,9 +82,12 @@ public class ViewerApplet extends NApplet {
 		super.setup(settings);
 		canvas = createGraphics(settings.width, settings.height);
 		baseDir = settings.filePath;
+		drawer = settings.drawer;
+		drawer.canvas=this.canvas;
 	}
 
 	public void draw() {
+		drawer.draw();
 		scale(zoomFactor);
 		logger.trace("Draw() called");
 		canvas.loadPixels();

@@ -5,10 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import processing.core.PImage;
 import nilsl.processing.lib.img.NImage;
 import nilsl.processing.lib.img.RecordImage;
+import nilsl.processing.lib.twodim.imageproviders.MultiImageFileProvider;
 
 /**
  * @author Nils
@@ -24,7 +27,8 @@ import nilsl.processing.lib.img.RecordImage;
  */
 public class LabelFilter implements FilterCommand {
 
-	
+	static final Logger logger = LogManager.getLogger(LabelFilter.class
+			.getPackage().getName());
 
 	private int takeRectangularSample(PImage img) {
 		img.loadPixels();
@@ -54,9 +58,11 @@ public class LabelFilter implements FilterCommand {
 	 */
 	public boolean isLabel(NImage nimage) {  // HACK: Should refactor to its own class in .lib.cv
 		
-		if (nimage instanceof RecordImage)	// isLabel is precomputed in RecordImage
+		if (nimage instanceof RecordImage && ((RecordImage)nimage).isLabel!=null)	// isLabel is precomputed in RecordImage
 		{
-			return ((RecordImage)nimage).isLabel;
+			boolean isLabel = ((RecordImage)nimage).isLabel;
+			logger.trace(String.format("Image is RecordImage. IsLabel: %b",isLabel));
+			return isLabel;
 		}
 		
 		// isLabel not precomputed; compute now		
@@ -85,12 +91,10 @@ public class LabelFilter implements FilterCommand {
 		
 
 		int refValue = samples.get(0);
-		System.out.println("Processing " + nimage.imageFilename
-				+ ". Reference Value: " + refValue);
+		
 		for (int val : samples) {
 			if (val != refValue)
 				isLabel = false;
-			System.out.println(val);
 		}
 		
 		samples.add(takeRectangularSample(pimg.get(imgWidth - samplingDistance
@@ -99,12 +103,15 @@ public class LabelFilter implements FilterCommand {
 		
 		if (samples.get(4)==refValue) isLabel=false;
 		
-		System.out.println("IsLabel: " + isLabel);
+		logger.trace("Processing " + nimage.imageFilename
+				+ ". Reference Value: " + refValue);
+		logger.trace("IsLabel: " + isLabel);
 		return isLabel;
 	}
 
 	@Override
 	public void apply(List<? super NImage> images) {
+		logger.info("Applying filter.");
 		for (Iterator<NImage> i = (Iterator<NImage>) images.iterator(); i.hasNext();) {
 			NImage image = i.next();
 			if (!isLabel(image))

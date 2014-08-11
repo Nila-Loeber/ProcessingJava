@@ -33,14 +33,13 @@ public class Sinus1 extends MosaicEditorApplet {
 		mosInfo.imgSizeY = 720/4;
 		mosInfo.xdim = 6;
 		mosInfo.ydim = 6;
-		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings(mosInfo);
-		
+		mosDrawer = new DefaultMosaicDrawer(mosInfo);
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings(mosInfo,"/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/Cutup/",mosDrawer);
 		
 	
 		super.setup(settings);
 		
-		mosDrawer = new DefaultMosaicDrawer(settings.mosInfo);
-		mosDrawer.canvas=this.canvas;
+		
 		//mosDrawer.imageEnhancers.add(new ZoomEnhancer(120,120,40));
 		
 		

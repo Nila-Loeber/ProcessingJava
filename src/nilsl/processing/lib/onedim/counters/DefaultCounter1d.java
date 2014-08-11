@@ -4,16 +4,16 @@ public class DefaultCounter1d implements Counter1d {
 
 	int counter;
 	private int step;
-	private int start;
-	private int end;
 
-	public DefaultCounter1d(int start, int step, int end) {
-		this.start = start;
+	public DefaultCounter1d(int step) {
 		this.step = step;
-		this.end = end;
-		counter=start;
 	}
 
+	public DefaultCounter1d() {
+		this.step = 1;
+	}
+
+	
 	@Override
 	public int getCurPos() {
 		return counter;
@@ -21,12 +21,12 @@ public class DefaultCounter1d implements Counter1d {
 
 	@Override
 	public boolean eof() {
-		return counter<end;
+		return false;
 	}
 
 	@Override
 	public void inc() {
-		if (counter<end) counter+=step;
+		counter+=step;
 
 	}
 

@@ -25,12 +25,12 @@ public abstract class MosaicEditorApplet extends ViewerApplet {
 
 	static final Logger logger = LogManager.getLogger(MosaicEditorApplet.class
 			.getPackage().getName());
-	
+
 	public void draw() {
 		mosDrawer.draw();
 		super.draw();
 	}
-	
+
 	protected Filterable imageProvider;
 	private MosaicInfo mosInfo;
 	protected EnhanceableMosaicDrawer2d mosDrawer;
@@ -41,8 +41,6 @@ public abstract class MosaicEditorApplet extends ViewerApplet {
 		super.setup(settings);
 	}
 
-	
-	
 	public void handleSwap() {
 		if (oldPos == null) {
 			oldPos = getAbsImagePos(mouseX, mouseY);
@@ -81,7 +79,8 @@ public abstract class MosaicEditorApplet extends ViewerApplet {
 		int pickupImgXPos = (int) (x / (mosInfo.imgSizeX * zoomFactor));
 		int pickupImgYPos = (int) (y / (mosInfo.imgSizeY * zoomFactor));
 		int pickupListPos = calcCurrentPos(pickupImgXPos, pickupImgYPos);
-		logger.trace(String.format("getAbsImagePos x: %d y: %d result: %d", pickupImgXPos, pickupImgYPos,pickupListPos));
+		logger.trace(String.format("getAbsImagePos x: %d y: %d result: %d",
+				pickupImgXPos, pickupImgYPos, pickupListPos));
 		return pickupListPos;
 	}
 
@@ -108,22 +107,25 @@ public abstract class MosaicEditorApplet extends ViewerApplet {
 	}
 
 	@Override
-	public void keyPressed() {		
-		if (key == 'r') {
+	public void keyPressed() {
+		switch (key) {
+		case 'r':
 			handleRandomize();
-		}
-		if (key == 'm') {
+			break;
+		case 'm':
 			for (int i = 0; i < 10; i++) {
 				handleRandomize();
 				super.HandleSave();
 			}
-		}
-		if (key == 'c') {
+			break;
+		case 'c':
 			this.copyMode = this.copyMode ^ true;
 			oldPos = null;
+			break;
+		default:
+			super.keyPressed();
+			break;
 		}
-
-		super.keyPressed();
 
 	}
 

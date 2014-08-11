@@ -7,4 +7,5 @@ public class RandomDrawerInfo {
 	public int height;
 	public int numPics;
 	public float slant;
+	public boolean repeatImages=false;
 }

@@ -3,8 +3,15 @@ package nilsl.processing.lib.twodim.imageproviders;
 import java.io.IOException;
 import java.util.List;
 
+import nilsl.processing.lib.applet.ViewerApplet;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class FilterableMultiImageProvider extends MultiImageFileProvider implements Filterable {
 
+
+	
 	public FilterableMultiImageProvider(List<String> filenames) {
 		super(filenames);
 	}

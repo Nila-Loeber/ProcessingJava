@@ -20,7 +20,7 @@ public class CutupDrawer extends DefaultMosaicDrawer {
 					enhancer.Enhance(pg);
 				}
 			}
-			parentApplet.image(pg, counter.getCurX() * imgXSize,
+			canvas.image(pg, counter.getCurX() * imgXSize,
 					counter.getCurY() * imgYSize);
 			counter.inc();
 		} while (!counter.eof() && imageProvider.hasNext());

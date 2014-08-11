@@ -19,7 +19,7 @@ public class RecordImage extends NImage implements Serializable {
 		isLabel = labelFilter.isLabel((NImage)this);
 	}
 	
-	public boolean isLabel;
+	public Boolean isLabel;
 	
 	
 }
