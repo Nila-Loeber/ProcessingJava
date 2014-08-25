@@ -16,7 +16,7 @@ public class MonoImageProvider extends ImageProvider implements Resetable {
 	@Override
 	public void getNextImage(PGraphics buffer) {
 		buffer.beginDraw();
-		buffer.image(image.GetImage(),0,0,buffer.width,buffer.height);
+		buffer.image(image.getImage(),0,0,buffer.width,buffer.height);
 		buffer.endDraw();
 	}
 

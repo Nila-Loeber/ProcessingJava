@@ -20,7 +20,7 @@ public abstract class MultiImageProvider extends ImageProvider implements Reseta
 	@Override
 	public void getNextImage(PGraphics buffer) {
 		buffer.beginDraw();
-		PImage nextImage = ((NImage)iterator.next()).GetImage();
+		PImage nextImage = ((NImage)iterator.next()).getImage();
 		nextImage.parent = buffer.parent;
 		buffer.image(nextImage, 0, 0, buffer.width,
 				buffer.height);

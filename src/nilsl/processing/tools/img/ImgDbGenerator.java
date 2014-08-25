@@ -8,13 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nilsl.processing.lib.img.NImage;
-import nilsl.processing.lib.img.RecordImage;
+import nilsl.processing.lib.img.CompostImage;
 import nilsl.processing.lib.io.FileRepo;
 
 public class ImgDbGenerator {
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
 		OutputStream fos = null;
 
 		final String filename = args[0];
@@ -23,30 +22,27 @@ public class ImgDbGenerator {
 			return;
 
 		List<String> filenames = FileRepo.listFiles(imagePath);
-		List<RecordImage> images = new ArrayList<RecordImage>();
-		//List<NImage> images = new ArrayList<NImage>();
+		List<CompostImage> images = new ArrayList<CompostImage>();
 		
 		int i=1;
-		
-		//LabelFilter labelFilter = new LabelFilter();
+	
 		
 		for (String name : filenames) {
 			try {
 				System.out.printf("Processing Image %d of %d\n", i,filenames.size());
-				images.add(new RecordImage(name));			
+				CompostImage image = new CompostImage(name);
+				image.disposeImage(); 	// Ditch the actual image, we're only 
+										// interested in metadata.
+				images.add(image);			
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				System.out.println("Exception: " + e.getMessage());
 			}
 			finally
 			{
 				i++; 
 			}
 		}
-		
-//		List<? extends NImage> nimages = images;
-//		
-//		labelFilter.apply((List<NImage>)nimages);
-		
+
 		System.out.printf("Writing Result to %s",filename);
 		
 		fos = new FileOutputStream(filename);

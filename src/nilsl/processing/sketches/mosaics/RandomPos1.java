@@ -41,15 +41,15 @@ public class RandomPos1 extends ViewerApplet {
 		info.repeatImages=true;
 		info.slant=radians(360);
 		
-		ViewerAppletSettings settings = new ViewerAppletSettings();
-		settings.filePath="/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/";
+
+		drawer = new RandomPosDrawer(info);
+		
+		ViewerAppletSettings settings = new ViewerAppletSettings("/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/",drawer);
 		settings.width=info.width;
 		settings.height=info.height;
 		super.setup(settings);
 		
 		
-		drawer = new RandomPosDrawer(info);
-		drawer.canvas=this.canvas;
 		
 		//drawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,2));
 		

@@ -30,7 +30,7 @@ public class NImage implements Serializable
 	  }
 	  
 	  
-	  public PImage GetImage()
+	  public PImage getImage()
 	  {
 		  if (image==null)
 		  {
@@ -38,6 +38,12 @@ public class NImage implements Serializable
 			    image=img;
 		  }
 		  return image;
+	  }
+	  
+	  // Releases the memory held by the Image data.
+	  public void disposeImage()
+	  {
+		  this.image=null;
 	  }
 	  
 	  public NImage(String filename)
@@ -63,10 +69,10 @@ public class NImage implements Serializable
 
 	  void buildHistograms()
 	  {
-		GetImage().loadPixels();
-	    for (int i=0; i<GetImage().pixels.length; i++)
+		getImage().loadPixels();
+	    for (int i=0; i<getImage().pixels.length; i++)
 	    {
-	      int pixel=GetImage().pixels[i];
+	      int pixel=getImage().pixels[i];
 	      int hue = (int)(PAppletShim.getApplet().hue(pixel));
 	      histogramHue[hue]++;
 	      int sat = (int)(PAppletShim.getApplet().saturation(pixel));
