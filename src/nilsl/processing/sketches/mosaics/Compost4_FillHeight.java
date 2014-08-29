@@ -53,7 +53,7 @@ public class Compost4_FillHeight extends MosaicEditorApplet {
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
-		imageProvider.ApplyFilters();
+		imageProvider.applyFilters();
 		
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;

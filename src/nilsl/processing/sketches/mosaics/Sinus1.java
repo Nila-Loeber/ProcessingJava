@@ -29,12 +29,12 @@ public class Sinus1 extends MosaicEditorApplet {
 		
 		MosaicInfo mosInfo = new MosaicInfo();
 		
-		mosInfo.imgSizeX = 1000/4;
-		mosInfo.imgSizeY = 720/4;
+		mosInfo.imgSizeX = 200;
+		mosInfo.imgSizeY = 200;
 		mosInfo.xdim = 6;
 		mosInfo.ydim = 6;
 		mosDrawer = new DefaultMosaicDrawer(mosInfo);
-		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings(mosInfo,"/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/Cutup/",mosDrawer);
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings(mosInfo,"/Users/Nils/Documents/Kunst/Random/Compositions",mosDrawer);
 		
 	
 		super.setup(settings);
@@ -52,18 +52,14 @@ public class Sinus1 extends MosaicEditorApplet {
 		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.65f));
 		//mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",120,30,105,color(0,0,0,100),new SentenceProvider("A knife, a fork, a bottle and a cork")));
 		
-		FilterCommand briFilter = new OrderByBriFilter(false);
-		List<FilterCommand> filters = new ArrayList<FilterCommand>();
-		filters.add(briFilter);
-		
-		try {
-			imageProvider = new FilterableMultiImageProvider("/Users/Nils/Documents/Kunst/Sinus/src/sinusimages.dat");
+				try {
+			imageProvider = new RandomSquareProvider();
 			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		imageProvider.ApplyFilters();
+		imageProvider.applyFilters();
 		
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;		

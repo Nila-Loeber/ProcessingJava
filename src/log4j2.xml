@@ -12,7 +12,7 @@
 		<logger
 			name="nilsl.processing.lib.twodim.imageproviders.AlternatingImageProvider"
 			level="ERROR" />
-		<logger name="nilsl.processing.lib.applet" level="ERROR" additivity="false">
+		<logger name="nilsl.processing.lib.applet" level="INFO" additivity="false">
 			<AppenderRef ref="CONSOLE" />
 		</logger>
 		<logger name="nilsl.processing.lib.applet.mosaic" level="INFO">

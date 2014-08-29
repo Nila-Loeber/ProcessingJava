@@ -64,7 +64,7 @@ public class RandomPos1 extends ViewerApplet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		imageProvider.ApplyFilters();
+		imageProvider.applyFilters();
 		
 		drawer.imageProvider = (ImageProvider) imageProvider;
 		drawer.parentApplet = this;

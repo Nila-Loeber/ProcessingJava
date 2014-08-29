@@ -48,7 +48,7 @@ public class RecordLabelsOnly extends MosaicEditorApplet {
 			e.printStackTrace();
 		}
 		// imgProvider = new FilterableMultiImageProvider(files,filters);
-		imageProvider.ApplyFilters();
+		imageProvider.applyFilters();
 
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;

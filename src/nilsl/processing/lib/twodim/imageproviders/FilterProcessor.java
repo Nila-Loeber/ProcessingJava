@@ -13,7 +13,7 @@ public class FilterProcessor {
 		this.filters = filters;
 	}
 	
-	public void ApplyFilters(List<? super NImage> images) {
+	public void applyFilters(List<? super NImage> images) {
 		for(Iterator<FilterCommand> i = filters.iterator(); i.hasNext();) {
 			FilterCommand filter = i.next();
 			filter.apply(images);

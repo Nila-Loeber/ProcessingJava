@@ -77,7 +77,7 @@ public class ItaloRecord3_Tint extends MosaicEditorApplet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		imageProvider.ApplyFilters();
+		imageProvider.applyFilters();
 		
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;

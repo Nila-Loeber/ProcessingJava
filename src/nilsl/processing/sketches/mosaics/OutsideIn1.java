@@ -72,7 +72,7 @@ public class OutsideIn1 extends ViewerApplet {
 			e.printStackTrace();
 		}
 		
-		imageProvider.ApplyFilters();
+		imageProvider.applyFilters();
 		
 		drawer.imageProvider = (ImageProvider) imageProvider;
 		drawer.parentApplet = this;

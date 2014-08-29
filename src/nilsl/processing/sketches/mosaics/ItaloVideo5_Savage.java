@@ -60,7 +60,7 @@ private static final long serialVersionUID = 1L;
 		
 		VideoImageProvider vip1 = new VideoImageProvider(videoBasePath + "Savage_-_Don_t_Cry_Tonight_Discoring.3gp",clipInfos1);
 		vip1.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
-		vip1.ApplyFilters();
+		vip1.applyFilters();
 		
 		imageProvider = vip1;
 		

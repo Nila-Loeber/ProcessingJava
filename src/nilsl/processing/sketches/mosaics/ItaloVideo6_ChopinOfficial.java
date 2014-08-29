@@ -65,7 +65,7 @@ private static final long serialVersionUID = 1L;
 		
 		VideoImageProvider vip1 = new VideoImageProvider(videoBasePath + "Gazebo_-_I_Like_Chopin.mp4",clipInfos1);
 		vip1.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
-		vip1.ApplyFilters();
+		vip1.applyFilters();
 		
 		imageProvider = vip1;
 		

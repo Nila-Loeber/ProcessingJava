@@ -61,8 +61,8 @@ public class VideoImageProvider extends MultiImageProvider implements
 	}
 
 	@Override
-	public void ApplyFilters() {
-		processor.ApplyFilters(images);
+	public void applyFilters() {
+		processor.applyFilters(images);
 
 	}
 

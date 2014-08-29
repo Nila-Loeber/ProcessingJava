@@ -54,7 +54,7 @@ private static final long serialVersionUID = 1L;
 		
 		VideoImageProvider vip1 = new VideoImageProvider(videoBasePath + "Valerie_Dore_-_The_Night_original_version_HD_HQ.mp4",clipInfos1);
 		vip1.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
-		vip1.ApplyFilters();
+		vip1.applyFilters();
 		
 //		VideoImageProvider vip2 = new VideoImageProvider("/Users/Nils/Documents/Processing/Video_Mosaic/Gazebo - I Like Chopin (WWF Club 9).mp4",clipInfos2);
 //		vip2.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));

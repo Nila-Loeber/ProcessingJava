@@ -67,7 +67,7 @@ public abstract class MosaicEditorApplet extends ViewerApplet {
 	}
 
 	private void triggerRedraw() {
-		imageProvider.ApplyFilters();
+		imageProvider.applyFilters();
 		super.draw();
 	}
 

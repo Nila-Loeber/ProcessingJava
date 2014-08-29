@@ -35,7 +35,9 @@ public class ViewerApplet extends NApplet {
 	}
 
 	protected void HandleSave() {
-		canvas.save(baseDir + baseFilename + "_" + filenameCounter + ".png");
+		String fileName = baseDir + baseFilename + "_" + filenameCounter + ".png";
+		logger.info("Saving image as : " + fileName);
+		canvas.save(fileName);
 		filenameCounter++;
 	}
 

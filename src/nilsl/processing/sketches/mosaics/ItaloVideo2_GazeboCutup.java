@@ -49,7 +49,7 @@ private static final long serialVersionUID = 1L;
 		
 		imageProvider = new VideoImageProvider("/Users/Nils/Documents/Processing/Video_Mosaic/Gazebo - I Like Chopin (WWF Club 9).mp4",clipInfos);
 		imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
-		imageProvider.ApplyFilters();
+		imageProvider.applyFilters();
 		
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;

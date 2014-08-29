@@ -23,8 +23,8 @@ public class FilterableMultiImageProvider extends MultiImageFileProvider impleme
 	private FilterProcessor processor;
 
 	@Override
-	public void ApplyFilters() {
-		processor.ApplyFilters(images);
+	public void applyFilters() {
+		processor.applyFilters(images);
 		reset();
 	}
 
