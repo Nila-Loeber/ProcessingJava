@@ -9,6 +9,11 @@ public class DefaultCounter1d implements Counter1d {
 		this.step = step;
 	}
 
+	public DefaultCounter1d(int startVal,int step) {
+		this.step = step;
+		this.counter=startVal;
+	}
+	
 	public DefaultCounter1d() {
 		this.step = 1;
 	}

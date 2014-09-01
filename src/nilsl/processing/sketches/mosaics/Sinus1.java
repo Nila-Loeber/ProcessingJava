@@ -17,6 +17,7 @@ import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
+import nilsl.processing.lib.twodim.imageproviders.random.GeneratorImageProvider;
 import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 public class Sinus1 extends MosaicEditorApplet {
@@ -53,7 +54,7 @@ public class Sinus1 extends MosaicEditorApplet {
 		//mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",120,30,105,color(0,0,0,100),new SentenceProvider("A knife, a fork, a bottle and a cork")));
 		
 				try {
-			imageProvider = new RandomSquareProvider();
+			imageProvider = new GeneratorImageProvider();
 			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
