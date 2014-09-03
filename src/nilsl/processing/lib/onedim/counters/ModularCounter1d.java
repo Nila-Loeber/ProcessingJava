@@ -23,14 +23,15 @@ public class ModularCounter1d implements Counter1d {
 
 	@Override
 	public void inc() {
-		counter+=step;
-		if (counter % modulus == 0) counter=0;
+		counter += step;
+		if (counter % modulus == 0)
+			counter = 0;
 	}
 
 	@Override
 	public void reset() {
-		counter=0;
-		
+		counter = 0;
+
 	}
 
 }

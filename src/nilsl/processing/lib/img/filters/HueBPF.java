@@ -9,22 +9,21 @@ import nilsl.processing.lib.img.NImage;
 
 public class HueBPF implements FilterCommand {
 
-	
 	private int min;
 	private int max;
 
 	public HueBPF(int min, int max) {
 		this.min = min;
 		this.max = max;
-		
+
 	}
-	
+
 	@Override
 	public void apply(List<? super NImage> images) {
 		List<? super NImage> results = images
 				.stream()
-				.filter((Object ni) -> ((NImage)ni).dominantHue >= min
-						&& ((NImage)ni).dominantHue <= max)
+				.filter((Object ni) -> ((NImage) ni).dominantHue >= min
+						&& ((NImage) ni).dominantHue <= max)
 				.collect(Collectors.toList());
 
 		images.clear();

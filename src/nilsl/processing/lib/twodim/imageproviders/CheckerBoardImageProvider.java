@@ -1,11 +1,9 @@
 package nilsl.processing.lib.twodim.imageproviders;
 
-
 import processing.core.PGraphics;
 
-
-public class CheckerBoardImageProvider extends ImageProvider implements Resetable {
-
+public class CheckerBoardImageProvider extends ImageProvider implements
+		Resetable {
 
 	private int color;
 
@@ -16,20 +14,20 @@ public class CheckerBoardImageProvider extends ImageProvider implements Resetabl
 	}
 
 	public CheckerBoardImageProvider() {
-		color=255;
+		color = 255;
 	}
-	
+
 	@Override
 	public void getNextImage(PGraphics buffer) {
 		buffer.beginDraw();
 		buffer.background(color);
 		buffer.endDraw();
-		color=Math.abs(color-255);
+		color = Math.abs(color - 255);
 	}
 
 	@Override
 	public void reset() {
-		
+
 	}
 
 }

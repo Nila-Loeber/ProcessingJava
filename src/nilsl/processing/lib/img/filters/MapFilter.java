@@ -31,11 +31,10 @@ public class MapFilter implements FilterCommand {
 				"Applying filter. numItems: %d. images.size: %d. Period: %d",
 				numItems, arraySize, period));
 
-		Iterator<? super NImage> it = images.iterator(); 
-		int counter=0;
-		
-		while(it.hasNext())
-		{
+		Iterator<? super NImage> it = images.iterator();
+		int counter = 0;
+
+		while (it.hasNext()) {
 			it.next();
 			if (counter % period != 0) {
 				it.remove();
@@ -43,15 +42,15 @@ public class MapFilter implements FilterCommand {
 			}
 			counter++;
 		}
-		
-//		for (int counter = 0; counter <= arraySize; counter++) {
-//			logger.trace("Processing item " + counter);
-//			it.next();
-//			if (counter % period != 0) {
-//				it.remove();
-//				logger.trace("Removing image at " + counter);
-//			}
-//		}
+
+		// for (int counter = 0; counter <= arraySize; counter++) {
+		// logger.trace("Processing item " + counter);
+		// it.next();
+		// if (counter % period != 0) {
+		// it.remove();
+		// logger.trace("Removing image at " + counter);
+		// }
+		// }
 	}
 
 	@Override

@@ -19,8 +19,8 @@ public class SizeFilter implements FilterCommand {
 	public void apply(List<? super NImage> images) {
 		images = images
 				.stream()
-				.filter((Object ni) -> ((NImage)ni).width >= this.x
-						&& ((NImage)ni).height >= this.y)
+				.filter((Object ni) -> ((NImage) ni).width >= this.x
+						&& ((NImage) ni).height >= this.y)
 				.collect(Collectors.toList());
 		;
 	}

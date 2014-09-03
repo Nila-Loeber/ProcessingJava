@@ -29,73 +29,62 @@ import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 public class OutsideIn1 extends ViewerApplet {
 
-
 	private static final long serialVersionUID = 1L;
 	private OutsideInDrawer drawer;
 
-	
-	public void setup() {	
-		
+	public void setup() {
+
 		OutsideInDrawerInfo info = new OutsideInDrawerInfo();
-		info.imgSizeX=600;
-		info.imgSizeY=600;
-		info.numPics=5;
-		info.imgSizeXdest=200;
-		info.imgSizeYdest=200;
-		
+		info.imgSizeX = 600;
+		info.imgSizeY = 600;
+		info.numPics = 5;
+		info.imgSizeXdest = 200;
+		info.imgSizeYdest = 200;
+
 		drawer = new OutsideInDrawer(info);
-		
-		ViewerAppletSettings settings = new ViewerAppletSettings("/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/OutsideIn/",drawer);
-		settings.width=info.imgSizeX;
-		settings.height=info.imgSizeY;
+
+		ViewerAppletSettings settings = new ViewerAppletSettings(
+				"/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/OutsideIn/",
+				drawer);
+		settings.width = info.imgSizeX;
+		settings.height = info.imgSizeY;
 		super.setup(settings);
-		
-		
 
+		// drawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.POSTERIZE,4));
+		// drawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.GRAY,4));
 
-		
-//		drawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,4));
-//		drawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,4));
-		
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();
-		
+
 		filters.add(new LabelFilter());
 		filters.add(new RandomizeFilter(false));
-		
-		FilterableMultiImageProvider imageProvider=null;
-		
+
+		FilterableMultiImageProvider imageProvider = null;
+
 		try {
-			 imageProvider = new FilterableMultiImageProvider("/Users/Nils/Documents/Kunst/Italo-Disco/Material/Images/ItaloRecords/italorecords.dat");
+			imageProvider = new FilterableMultiImageProvider(
+					"/Users/Nils/Documents/Kunst/Italo-Disco/Material/Images/ItaloRecords/italorecords.dat");
 			imageProvider.setFilterProcessor(new FilterProcessor(filters));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		imageProvider.applyFilters();
-		
+
 		drawer.imageProvider = (ImageProvider) imageProvider;
 		drawer.parentApplet = this;
 
 		background(255);
 		frameRate(0.2f);
 	}
-	
+
 	@Override
-	public void draw()
-	{
+	public void draw() {
 		drawer.draw();
 		super.draw();
-		//noLoop();
+		// noLoop();
 	}
 
-
-	
-
-	
-
-	
-	
-
 }
-

@@ -1,4 +1,4 @@
-package nilsl.processing.lib.twodim.imageproviders.random;
+package nilsl.processing.lib.twodim.imageproviders.generators;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,6 +13,7 @@ import nilsl.processing.lib.twodim.drawers.OutsideInDrawer;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.Filterable;
 import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
+import nilsl.processing.lib.twodim.imageproviders.ReInitable;
 import nilsl.processing.lib.twodim.imageproviders.Resetable;
 
 import org.apache.logging.log4j.LogManager;
@@ -21,8 +22,8 @@ import org.gstreamer.BufferCopyFlags;
 
 import processing.core.PGraphics;
 
-public class GeneratorImageProvider extends ImageProvider implements Filterable,
-		Resetable {
+public class GeneratorImageProvider extends ImageProvider implements
+		Filterable, Resetable, ReInitable {
 
 	static final Logger logger = LogManager
 			.getLogger(GeneratorImageProvider.class.getPackage().getName());
@@ -34,6 +35,10 @@ public class GeneratorImageProvider extends ImageProvider implements Filterable,
 	private Counter1d counter;
 
 	public GeneratorImageProvider(GeneratorProviderInfo info) {
+		init(info);
+	}
+
+	private void init(GeneratorProviderInfo info) {
 		this.rnd = new Random(info.seed);
 		this.counter = new DefaultCounter1d();
 		this.gpInfo = info;
@@ -42,61 +47,32 @@ public class GeneratorImageProvider extends ImageProvider implements Filterable,
 	}
 
 	private List<? super NImage> generateImages() {
+		synchronized(this)
+		{
 		images = new ArrayList<NImage>();
 		for (int i = 0; i < gpInfo.numPictures; i++) {
 			images.add(generateImage());
 			counter.inc();
 		}
 		return images;
+		}
 	}
 
 	private NImage generateImage() {
-		PGraphics buffer = PAppletShim.getApplet().createGraphics(
-				gpInfo.width, gpInfo.height);
+		PGraphics buffer = PAppletShim.getApplet().createGraphics(gpInfo.width,
+				gpInfo.height);
 		buffer.beginDraw();
-		
+
 		ImageGeneratorState state = new ImageGeneratorState();
-		state.counter=counter;
-		state.rnd=rnd;		
-		state.gpInfo=gpInfo;
-		
+		state.counter = counter;
+		state.rnd = rnd;
+		state.gpInfo = gpInfo;
+
 		gpInfo.imageGenerator.Draw(buffer, state);
-				
+
 		buffer.endDraw();
 		return new NImage(buffer);
 	}
-
-//	private void generateImageContent(PGraphics buffer) {
-////		buffer.fill(rnd.nextInt() % 255, rnd.nextInt() % 255,
-////				rnd.nextInt() % 255);
-////		buffer.rect(0, 0, buffer.height, buffer.width);
-//		
-//		int numLines = Math.max(rnd.nextInt(gipInfo.maxLines),gipInfo.minLines);
-//		int lineSize=gipInfo.width/numLines;
-//		//buffer.background(0,0,rnd.nextInt(255));
-//		
-//		buffer.background(0);
-//		
-//		buffer.strokeJoin(rnd.nextInt(3));
-//		buffer.strokeWeight(Math.max(rnd.nextInt(gipInfo.maxStrokeWeight),gipInfo.minStrokeWeight));
-//		buffer.rotate((float)(rnd.nextFloat()*gipInfo.maxRotate));
-//		buffer.scale(rnd.nextFloat()*gipInfo.maxScale);
-//		
-//		for (int i = 0; i <= numLines; i++) {
-//            
-//            buffer.noFill();
-//              
-//            //buffer.stroke(i % 2 * 127, rnd.nextInt(255)%2*127, 127);
-//            
-//            buffer.stroke(gipInfo.colorProvider.GetColor(rnd));
-//            
-//            buffer.rectMode(buffer.CENTER);
-//                                   
-//            buffer.rect(buffer.width / 2, buffer.height / 2, i * lineSize * 2, i * lineSize * 2);
-//
-//        }
-//		
-//	}
 
 	@Override
 	public void applyFilters() {
@@ -117,9 +93,12 @@ public class GeneratorImageProvider extends ImageProvider implements Filterable,
 	@Override
 	public void getNextImage(PGraphics buffer) {
 		buffer.beginDraw();
-		buffer.image(((NImage)it.next()).getImage(),0,0);
+		synchronized(this)
+		{	
+		buffer.image(((NImage) it.next()).getImage(), 0, 0);
+		}
 		buffer.endDraw();
-		
+
 	}
 
 	@Override
@@ -130,6 +109,15 @@ public class GeneratorImageProvider extends ImageProvider implements Filterable,
 	@Override
 	public void reset() {
 		it = images.iterator();
+	}
+
+	@Override
+	public void reInit() {
+		synchronized(this)
+		{
+		init(gpInfo);
+		}
+
 	}
 
 }

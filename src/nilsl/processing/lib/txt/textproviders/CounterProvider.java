@@ -7,9 +7,9 @@ public class CounterProvider implements TextProvider {
 	private ModularCounter1d counter1d;
 
 	public CounterProvider(int max) {
-		counter1d = new ModularCounter1d(1,max);
+		counter1d = new ModularCounter1d(1, max);
 	}
-	
+
 	@Override
 	public String getNextWord() {
 		counter1d.inc();

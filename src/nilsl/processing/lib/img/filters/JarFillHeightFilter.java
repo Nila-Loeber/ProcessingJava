@@ -20,7 +20,7 @@ public class JarFillHeightFilter implements FilterCommand {
 
 	static final Logger logger = LogManager.getLogger(JarFillHeightFilter.class
 			.getPackage().getName());
-	
+
 	public JarFillHeightFilter(boolean desc) {
 		this.desc = desc;
 	}

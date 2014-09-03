@@ -1,4 +1,4 @@
-package nilsl.processing.lib.twodim.imageproviders.random;
+package nilsl.processing.lib.twodim.imageproviders.generators;
 
 import java.util.Random;
 

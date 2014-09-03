@@ -13,6 +13,7 @@ import nilsl.processing.lib.img.filters.SwapFilter;
 import nilsl.processing.lib.twodim.drawers.mosaic.EnhanceableMosaicDrawer2d;
 import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 import nilsl.processing.lib.twodim.imageproviders.Filterable;
+import nilsl.processing.lib.twodim.imageproviders.ReInitable;
 
 public abstract class MosaicEditorApplet extends ViewerApplet {
 
@@ -112,10 +113,13 @@ public abstract class MosaicEditorApplet extends ViewerApplet {
 		case 'r':
 			handleRandomize();
 			break;
+		case 'R':
+			handleReInit();
+			break;
 		case 'm':
 			for (int i = 0; i < 10; i++) {
 				handleRandomize();
-				super.HandleSave();
+				super.handleSave();
 			}
 			break;
 		case 'c':
@@ -126,6 +130,12 @@ public abstract class MosaicEditorApplet extends ViewerApplet {
 			super.keyPressed();
 			break;
 		}
+
+	}
+
+	protected void handleReInit() {
+		if (imageProvider instanceof ReInitable)
+			((ReInitable) imageProvider).reInit();
 
 	}
 

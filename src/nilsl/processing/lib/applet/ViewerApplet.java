@@ -21,7 +21,7 @@ public class ViewerApplet extends NApplet {
 	private String baseDir = "C:\\data\\compositions\\";
 	private String baseFilename;
 	protected PGraphics canvas;
-	protected float zoomFactor=1;
+	protected float zoomFactor = 1;
 	private Drawer drawer;
 
 	static final Logger logger = LogManager.getLogger(ViewerApplet.class
@@ -34,50 +34,49 @@ public class ViewerApplet extends NApplet {
 		baseFilename = dateFormat.format(date);
 	}
 
-	protected void HandleSave() {
-		String fileName = baseDir + baseFilename + "_" + filenameCounter + ".png";
+	protected void handleSave() {
+		String fileName = baseDir + baseFilename + "_" + filenameCounter
+				+ ".png";
 		logger.info("Saving image as : " + fileName);
 		canvas.save(fileName);
 		filenameCounter++;
 	}
 
 	public void keyPressed() {
-		switch (key)
-		{
+		switch (key) {
 		case 's':
-			HandleSave();
-		break;
+			handleSave();
+			break;
 		case '+':
 			zoomFactor *= 2;
 			background(0);
 			draw();
 			break;
-		
+
 		case '-':
 			zoomFactor /= 2;
 			background(0);
 			draw();
 			break;
-		
-		case 'l': 
-			if (this.looping) noLoop(); else loop();
+
+		case 'l':
+			if (this.looping)
+				noLoop();
+			else
+				loop();
 			break;
-		
+
 		case 'm':
 			for (int i = 0; i < 10; i++) {
 				draw();
-				HandleSave();
+				handleSave();
 			}
 			break;
 		default:
 			super.keyPressed();
-			break;	
+			break;
 		}
-		
-		
-		
-		
-		
+
 	}
 
 	public void setup(ViewerAppletSettings settings) {
@@ -85,7 +84,7 @@ public class ViewerApplet extends NApplet {
 		canvas = createGraphics(settings.width, settings.height);
 		baseDir = settings.filePath;
 		drawer = settings.drawer;
-		drawer.canvas=this.canvas;
+		drawer.canvas = this.canvas;
 	}
 
 	public void draw() {
@@ -95,7 +94,7 @@ public class ViewerApplet extends NApplet {
 		canvas.loadPixels();
 		canvas.updatePixels();
 		image(canvas, 0, 0, canvas.width, canvas.height);
-		scale(1/zoomFactor);
+		scale(1 / zoomFactor);
 	}
 
 }

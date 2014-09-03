@@ -14,11 +14,10 @@ public class RecordImage extends NImage implements Serializable {
 
 	public RecordImage(String filename) {
 		super(filename);
-	
-		isLabel = RecordImageProcessing.isLabel((NImage)this);
+
+		isLabel = RecordImageProcessing.isLabel((NImage) this);
 	}
-	
+
 	public Boolean isLabel;
-	
-	
+
 }

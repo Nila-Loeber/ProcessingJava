@@ -8,7 +8,8 @@ import nilsl.processing.lib.img.NImage;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
-public abstract class MultiImageProvider extends ImageProvider implements Resetable {
+public abstract class MultiImageProvider extends ImageProvider implements
+		Resetable {
 
 	protected List<? super NImage> images = new ArrayList<NImage>();
 	Iterator<? super NImage> iterator;
@@ -20,10 +21,9 @@ public abstract class MultiImageProvider extends ImageProvider implements Reseta
 	@Override
 	public void getNextImage(PGraphics buffer) {
 		buffer.beginDraw();
-		PImage nextImage = ((NImage)iterator.next()).getImage();
+		PImage nextImage = ((NImage) iterator.next()).getImage();
 		nextImage.parent = buffer.parent;
-		buffer.image(nextImage, 0, 0, buffer.width,
-				buffer.height);
+		buffer.image(nextImage, 0, 0, buffer.width, buffer.height);
 		buffer.endDraw();
 	}
 

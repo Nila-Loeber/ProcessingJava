@@ -9,13 +9,13 @@ public class RemoveFilter implements FilterCommand {
 	private int imgToRemove;
 
 	public RemoveFilter(int imgToRemove) {
-	this.imgToRemove=imgToRemove;
+		this.imgToRemove = imgToRemove;
 	}
-	
+
 	@Override
 	public void apply(List<? super NImage> images) {
-		if (imgToRemove<images.size())
-		images.remove(imgToRemove);
+		if (imgToRemove < images.size())
+			images.remove(imgToRemove);
 	}
 
 	@Override

@@ -7,11 +7,12 @@ import processing.core.PImage;
 public class CompostImageProcessing {
 	public static int calcFillHeight(PImage pimage, int top, int bottom,
 			float thresholdProportionOfFilledPixels) {
-		
-		PGraphics image = PAppletShim.getApplet().createGraphics(pimage.width, pimage.height);
-		
-		prepareImage(image,pimage);
-		
+
+		PGraphics image = PAppletShim.getApplet().createGraphics(pimage.width,
+				pimage.height);
+
+		prepareImage(image, pimage);
+
 		int counter = top;
 		while (counter != bottom) {
 			int blackPixels = calcBlackPixels(image, counter);
@@ -27,11 +28,11 @@ public class CompostImageProcessing {
 
 	static private void prepareImage(PGraphics graphics, PImage pimage) {
 		graphics.beginDraw();
-		  graphics.background(0);
-		  graphics.image(pimage,0,0);
-		  graphics.filter(PAppletShim.getApplet().THRESHOLD, 0.5f);		 
-		  graphics.endDraw();
-		  graphics.loadPixels();
+		graphics.background(0);
+		graphics.image(pimage, 0, 0);
+		graphics.filter(PAppletShim.getApplet().THRESHOLD, 0.5f);
+		graphics.endDraw();
+		graphics.loadPixels();
 	}
 
 	static int calcBlackPixels(PImage image, int y) {

@@ -7,12 +7,11 @@ public class DefaultBoundedCounter1d implements Counter1d {
 	private int start;
 	private int end;
 
-
 	public DefaultBoundedCounter1d(int start, int step, int end) {
 		this.start = start;
 		this.step = step;
 		this.end = end;
-		counter=start;
+		counter = start;
 	}
 
 	@Override
@@ -22,18 +21,19 @@ public class DefaultBoundedCounter1d implements Counter1d {
 
 	@Override
 	public boolean eof() {
-		return counter>=end;
+		return counter >= end;
 	}
 
 	@Override
 	public void inc() {
-		if (counter<=end) counter+=step;
+		if (counter <= end)
+			counter += step;
 	}
 
 	@Override
 	public void reset() {
-		counter=0;
-		
+		counter = 0;
+
 	}
 
 }

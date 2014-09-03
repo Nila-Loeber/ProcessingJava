@@ -9,7 +9,7 @@ public class CutupEnhancer implements ImageEnhancer {
 
 	private Counter1d modularCounter;
 	private int numSegments;
-	private int segmentToUse=-1;
+	private int segmentToUse = -1;
 
 	public CutupEnhancer(int numSegments) {
 		this.numSegments = numSegments;
@@ -22,15 +22,17 @@ public class CutupEnhancer implements ImageEnhancer {
 		modularCounter = new ModularCounter1d(1, numSegments);
 	}
 
-	
 	@Override
 	public void Enhance(PGraphics pgraphic) {
 		int height = (int) pgraphic.height / numSegments;
 
 		int curPos;
-		
-		if (segmentToUse!=-1) curPos=segmentToUse*height; else curPos = modularCounter.getCurPos()*height;
-		
+
+		if (segmentToUse != -1)
+			curPos = segmentToUse * height;
+		else
+			curPos = modularCounter.getCurPos() * height;
+
 		PImage imagePart = pgraphic.get(0, curPos, pgraphic.width, height);
 		pgraphic.setSize(pgraphic.width, height);
 		pgraphic.beginDraw();

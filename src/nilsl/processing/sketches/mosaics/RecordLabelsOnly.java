@@ -22,12 +22,12 @@ public class RecordLabelsOnly extends MosaicEditorApplet {
 
 	public void setup() {
 		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
-		
+
 		settings.mosInfo.imgSizeX = 200;
 		settings.mosInfo.imgSizeY = 200;
 		settings.mosInfo.xdim = 5;
 		settings.mosInfo.ydim = 5;
-	
+
 		mosDrawer = new DefaultMosaicDrawer(settings.mosInfo);
 
 		// List<String> files = FileRepo.listFiles("c:\\data\\unsorted");
@@ -42,7 +42,8 @@ public class RecordLabelsOnly extends MosaicEditorApplet {
 		try {
 			imageProvider = new FilterableMultiImageProvider(
 					"c:\\data\\unsorted\\images.dat");
-			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
+			imageProvider.setFilterProcessor(new FilterProcessor(
+					new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,14 +56,9 @@ public class RecordLabelsOnly extends MosaicEditorApplet {
 
 	}
 
-
 	public void draw() {
 
 		mosDrawer.draw();
 	}
 
-
-
-	
-	
 }

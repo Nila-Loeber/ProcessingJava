@@ -8,18 +8,18 @@ import nilsl.processing.lib.applet.ViewerApplet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class FilterableMultiImageProvider extends MultiImageFileProvider implements Filterable {
+public class FilterableMultiImageProvider extends MultiImageFileProvider
+		implements Filterable {
 
-
-	
 	public FilterableMultiImageProvider(List<String> filenames) {
 		super(filenames);
 	}
 
-	public FilterableMultiImageProvider(String filename) throws ClassNotFoundException, IOException {
+	public FilterableMultiImageProvider(String filename)
+			throws ClassNotFoundException, IOException {
 		super(filename);
 	}
-	
+
 	private FilterProcessor processor;
 
 	@Override
@@ -30,7 +30,7 @@ public class FilterableMultiImageProvider extends MultiImageFileProvider impleme
 
 	@Override
 	public void setFilterProcessor(FilterProcessor processor) {
-		this.processor=processor;
+		this.processor = processor;
 	}
 
 	@Override
@@ -38,9 +38,4 @@ public class FilterableMultiImageProvider extends MultiImageFileProvider impleme
 		return processor;
 	}
 
-	
-
-	
-	
-	
 }

@@ -31,15 +31,11 @@ public class LabelFilter implements FilterCommand {
 	static final Logger logger = LogManager.getLogger(LabelFilter.class
 			.getPackage().getName());
 
-	
-
-	
-	
-	
 	@Override
 	public void apply(List<? super NImage> images) {
 		logger.info("Applying filter.");
-		for (Iterator<NImage> i = (Iterator<NImage>) images.iterator(); i.hasNext();) {
+		for (Iterator<NImage> i = (Iterator<NImage>) images.iterator(); i
+				.hasNext();) {
 			NImage image = i.next();
 			if (!RecordImageProcessing.isLabel(image))
 				i.remove();

@@ -15,23 +15,24 @@ public class TypoEnhancer implements ImageEnhancer {
 	private int y;
 	private TextProvider textProvider;
 	private int color;
-	
-	public TypoEnhancer(String fontPath, float fontSize, int x, int y, int color, TextProvider provider) {
+
+	public TypoEnhancer(String fontPath, float fontSize, int x, int y,
+			int color, TextProvider provider) {
 		this.x = x;
 		this.y = y;
 		this.color = color;
 		this.textProvider = provider;
 		font = PAppletShim.getApplet().loadFont(fontPath);
-		this.fontSize = fontSize;	
+		this.fontSize = fontSize;
 	}
-	
+
 	@Override
 	public void Enhance(PGraphics pgraphic) {
 		pgraphic.beginDraw();
 		pgraphic.textFont(font);
 		pgraphic.textSize(fontSize);
 		pgraphic.fill(color);
-		pgraphic.text(textProvider.getNextWord(),x,y);
+		pgraphic.text(textProvider.getNextWord(), x, y);
 		pgraphic.endDraw();
 	}
 

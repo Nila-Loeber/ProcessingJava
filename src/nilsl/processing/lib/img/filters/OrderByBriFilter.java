@@ -13,12 +13,13 @@ public class OrderByBriFilter implements FilterCommand {
 	public OrderByBriFilter(boolean desc) {
 		this.desc = desc;
 	}
-	
+
 	@Override
 	public void apply(List<? super NImage> images) {
-	((List<NImage>)images).sort(new BriComparator());
-	if (desc) Collections.reverse(images);
-		
+		((List<NImage>) images).sort(new BriComparator());
+		if (desc)
+			Collections.reverse(images);
+
 	}
 
 	@Override

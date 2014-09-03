@@ -7,7 +7,7 @@ public interface Counter1d {
 	public abstract boolean eof();
 
 	public abstract void inc();
-	
+
 	public abstract void reset();
 
 }

@@ -6,7 +6,7 @@ import nilsl.processing.lib.twodim.imageproviders.MonoImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.Resetable;
 import processing.core.*;
 
-public class MonoImage extends PApplet implements Resetable{
+public class MonoImage extends PApplet implements Resetable {
 
 	private static final long serialVersionUID = 1L;
 	private MosaicInfo mosInfo = new MosaicInfo();
@@ -34,7 +34,7 @@ public class MonoImage extends PApplet implements Resetable{
 
 	@Override
 	public void reset() {
-	
+
 	}
 
 }

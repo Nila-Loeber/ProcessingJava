@@ -1,6 +1,5 @@
 package nilsl.processing.lib.twodim.counters;
 
-
 public class DefaultCounter2d implements Counter2d {
 
 	protected int curX = 0;
@@ -84,7 +83,7 @@ public class DefaultCounter2d implements Counter2d {
 	 */
 	@Override
 	public void inc() {
-		//System.out.println(curX + ":" + curY + " : CurPos: " + getCurPos());
+		// System.out.println(curX + ":" + curY + " : CurPos: " + getCurPos());
 		if (curX == maxX && curY == maxY) {
 			curX = maxX + 1; // advance to EOF position
 			return;

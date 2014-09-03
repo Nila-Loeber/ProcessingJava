@@ -15,7 +15,7 @@
 		<logger name="nilsl.processing.lib.applet" level="INFO" additivity="false">
 			<AppenderRef ref="CONSOLE" />
 		</logger>
-		<logger name="nilsl.processing.lib.applet.mosaic" level="INFO">
+		<logger name="nilsl.processing.lib.applet.mosaic" level="TRACE" additivity="false">
 			<AppenderRef ref="CONSOLE" />
 		</logger>
 		<logger name="nilsl.processing.lib.twodim.drawers.mosaic"
@@ -30,6 +30,7 @@
 			additivity="false">
 			<AppenderRef ref="CONSOLE" />
 		</logger>
+		
 		<logger name="nilsl.processing.lib.twodim.imageproviders"
 			level="TRACE" />
 	</Loggers>

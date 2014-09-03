@@ -8,7 +8,7 @@ public class StaticStringProvider implements TextProvider {
 		this.theString = theString;
 
 	}
-	
+
 	@Override
 	public String getNextWord() {
 		// TODO Auto-generated method stub

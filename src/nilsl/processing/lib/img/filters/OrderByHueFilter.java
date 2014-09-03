@@ -9,8 +9,8 @@ public class OrderByHueFilter implements FilterCommand {
 
 	@Override
 	public void apply(List<? super NImage> images) {
-		((List<NImage>)images).sort(new HueComparator());
-		
+		((List<NImage>) images).sort(new HueComparator());
+
 	}
 
 	@Override

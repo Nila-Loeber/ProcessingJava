@@ -12,12 +12,13 @@ public class FilterProcessor {
 	public FilterProcessor(List<FilterCommand> filters) {
 		this.filters = filters;
 	}
-	
+
 	public void applyFilters(List<? super NImage> images) {
-		for(Iterator<FilterCommand> i = filters.iterator(); i.hasNext();) {
+		for (Iterator<FilterCommand> i = filters.iterator(); i.hasNext();) {
 			FilterCommand filter = i.next();
 			filter.apply(images);
-		    if (filter.removeAfterApply()) i.remove();
-		 }
+			if (filter.removeAfterApply())
+				i.remove();
+		}
 	}
 }

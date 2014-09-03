@@ -23,28 +23,26 @@ public class ImgDbGenerator {
 
 		List<String> filenames = FileRepo.listFiles(imagePath);
 		List<CompostImage> images = new ArrayList<CompostImage>();
-		
-		int i=1;
-	
-		
+
+		int i = 1;
+
 		for (String name : filenames) {
 			try {
-				System.out.printf("Processing Image %d of %d\n", i,filenames.size());
+				System.out.printf("Processing Image %d of %d\n", i,
+						filenames.size());
 				CompostImage image = new CompostImage(name);
-				image.disposeImage(); 	// Ditch the actual image, we're only 
+				image.disposeImage(); // Ditch the actual image, we're only
 										// interested in metadata.
-				images.add(image);			
+				images.add(image);
 			} catch (Exception e) {
 				System.out.println("Exception: " + e.getMessage());
-			}
-			finally
-			{
-				i++; 
+			} finally {
+				i++;
 			}
 		}
 
-		System.out.printf("Writing Result to %s",filename);
-		
+		System.out.printf("Writing Result to %s", filename);
+
 		fos = new FileOutputStream(filename);
 		ObjectOutputStream o = new ObjectOutputStream(fos);
 		o.writeObject(images);

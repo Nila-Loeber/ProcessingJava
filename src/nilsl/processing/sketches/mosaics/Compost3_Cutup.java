@@ -1,4 +1,4 @@
- package nilsl.processing.sketches.mosaics;
+package nilsl.processing.sketches.mosaics;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,50 +27,45 @@ import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 public class Compost3_Cutup extends MosaicEditorApplet {
 
-
 	private static final long serialVersionUID = 1L;
 
-	
 	public void setup() {
 		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings();
 		settings.mosInfo.xdim = 1;
 		settings.mosInfo.ydim = 7;
-				
-		//settings.mosInfo.imgSizeX = 245;
-		settings.mosInfo.imgSizeX = (int) (1224/1.5);
+
+		// settings.mosInfo.imgSizeX = 245;
+		settings.mosInfo.imgSizeX = (int) (1224 / 1.5);
 		// settings.mosInfo.imgSizeY = 326;
-		settings.mosInfo.imgSizeY = (int) (1632/1.5/settings.mosInfo.ydim);
-		
+		settings.mosInfo.imgSizeY = (int) (1632 / 1.5 / settings.mosInfo.ydim);
+
 		mosDrawer = new CutupDrawer(settings.mosInfo);
-		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,4));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,3));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
-		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,5));
-		
-		mosDrawer.imageEnhancers.add(new CutupEnhancer(settings.mosInfo.ydim));		
-		
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(
+				PShader.POSTERIZE, 4));
+		// mosDrawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.GRAY,3));
+		// mosDrawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.THRESHOLD,0.5f));
+		mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,
+				5));
+
+		mosDrawer.imageEnhancers.add(new CutupEnhancer(settings.mosInfo.ydim));
+
 		try {
-			imageProvider = new FilterableMultiImageProvider("c:\\data\\compost\\small\\images.dat");
-			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
+			imageProvider = new FilterableMultiImageProvider(
+					"c:\\data\\compost\\small\\images.dat");
+			imageProvider.setFilterProcessor(new FilterProcessor(
+					new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		imageProvider.applyFilters();
-		
+
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
 		mosDrawer.parentApplet = this;
 
 		super.setup(settings);
 	}
 
-
-	
-
-	
-
-	
-	
-
 }
-

@@ -6,8 +6,9 @@ import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 
 public class MosaicEditorAppletSettings extends ViewerAppletSettings {
 	public MosaicInfo mosInfo;
-	public MosaicEditorAppletSettings(MosaicInfo mosInfo, String filePath, Drawer drawer)
-	{
+
+	public MosaicEditorAppletSettings(MosaicInfo mosInfo, String filePath,
+			Drawer drawer) {
 		super(filePath, drawer);
 		this.mosInfo = mosInfo;
 		width = mosInfo.xdim * mosInfo.imgSizeX;

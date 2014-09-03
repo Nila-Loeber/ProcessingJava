@@ -9,26 +9,25 @@ public class CheckerBoard extends PApplet {
 
 	private static final long serialVersionUID = 1L;
 	private MosaicInfo mosInfo = new MosaicInfo();
-	
+
 	public void setup() {
 		size(800, 600);
 		noLoop();
 
 	}
 
-	public void draw()
-	{
+	public void draw() {
 		mosInfo.imgSizeX = 100;
 		mosInfo.imgSizeY = 100;
 		mosInfo.xdim = 3;
 		mosInfo.ydim = 3;
-		
-	DefaultMosaicDrawer md = new DefaultMosaicDrawer(mosInfo);
 
-	md.imageProvider = new CheckerBoardImageProvider();
-	md.parentApplet=this;
+		DefaultMosaicDrawer md = new DefaultMosaicDrawer(mosInfo);
 
-	md.draw();
+		md.imageProvider = new CheckerBoardImageProvider();
+		md.parentApplet = this;
+
+		md.draw();
 
 	}
 

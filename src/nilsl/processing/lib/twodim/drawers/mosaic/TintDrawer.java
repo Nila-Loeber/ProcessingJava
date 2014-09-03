@@ -60,7 +60,8 @@ public class TintDrawer extends EnhanceableMosaicDrawer2d {
 
 			parentApplet.tint(currentTintInfo.v1, currentTintInfo.v2,
 					currentTintInfo.v3, currentTintInfo.opacity);
-			if (pg==null) pg = parentApplet.createGraphics(imgXSize, imgYSize);
+			if (pg == null)
+				pg = parentApplet.createGraphics(imgXSize, imgYSize);
 			if (imageProvider.hasNext()) {
 				imageProvider.getNextImage(pg);
 			}

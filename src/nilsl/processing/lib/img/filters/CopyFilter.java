@@ -13,11 +13,11 @@ public class CopyFilter implements FilterCommand {
 		this.oldPos = oldPos;
 		this.newPos = newPos;
 	}
-	
+
 	@Override
 	public void apply(List<? super NImage> images) {
 		if (oldPos != newPos) {
-			images.set(newPos, (NImage)images.get(oldPos));
+			images.set(newPos, (NImage) images.get(oldPos));
 		}
 
 	}

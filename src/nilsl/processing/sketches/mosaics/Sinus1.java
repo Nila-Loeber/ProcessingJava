@@ -17,62 +17,58 @@ import nilsl.processing.lib.twodim.drawers.mosaic.MosaicInfo;
 import nilsl.processing.lib.twodim.imageproviders.FilterProcessor;
 import nilsl.processing.lib.twodim.imageproviders.FilterableMultiImageProvider;
 import nilsl.processing.lib.twodim.imageproviders.ImageProvider;
-import nilsl.processing.lib.twodim.imageproviders.random.GeneratorImageProvider;
+import nilsl.processing.lib.twodim.imageproviders.generators.GeneratorImageProvider;
 import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 public class Sinus1 extends MosaicEditorApplet {
 
-
 	private static final long serialVersionUID = 1L;
 
-	
 	public void setup() {
-		
+
 		MosaicInfo mosInfo = new MosaicInfo();
-		
+
 		mosInfo.imgSizeX = 200;
 		mosInfo.imgSizeY = 200;
 		mosInfo.xdim = 6;
 		mosInfo.ydim = 6;
 		mosDrawer = new DefaultMosaicDrawer(mosInfo);
-		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings(mosInfo,"/Users/Nils/Documents/Kunst/Random/Compositions",mosDrawer);
-		
-	
+		MosaicEditorAppletSettings settings = new MosaicEditorAppletSettings(
+				mosInfo, "/Users/Nils/Documents/Kunst/Random/Compositions",
+				mosDrawer);
+
 		super.setup(settings);
-		
-		
-		//mosDrawer.imageEnhancers.add(new ZoomEnhancer(120,120,40));
-		
-		
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,3));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.BLUR,5));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.INVERT,10));
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.GRAY,0));
-		//mosDrawer.imageEnhancers.add(blackSquare);
-		
-		//mosDrawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.THRESHOLD,0.65f));
-		//mosDrawer.imageEnhancers.add(new TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",120,30,105,color(0,0,0,100),new SentenceProvider("A knife, a fork, a bottle and a cork")));
-		
-				try {
+
+		// mosDrawer.imageEnhancers.add(new ZoomEnhancer(120,120,40));
+
+		// mosDrawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.POSTERIZE,3));
+		// mosDrawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.BLUR,5));
+		// mosDrawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.INVERT,10));
+		// mosDrawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.GRAY,0));
+		// mosDrawer.imageEnhancers.add(blackSquare);
+
+		// mosDrawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.THRESHOLD,0.65f));
+		// mosDrawer.imageEnhancers.add(new
+		// TypoEnhancer("c:\\data\\fonts\\Aharoni-Bold-120.vlw",120,30,105,color(0,0,0,100),new
+		// SentenceProvider("A knife, a fork, a bottle and a cork")));
+
+		try {
 			imageProvider = new GeneratorImageProvider();
-			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
+			imageProvider.setFilterProcessor(new FilterProcessor(
+					new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		imageProvider.applyFilters();
-		
+
 		mosDrawer.imageProvider = (ImageProvider) imageProvider;
-		mosDrawer.parentApplet = this;		
+		mosDrawer.parentApplet = this;
 	}
 
-
-	
-
-	
-
-	
-	
-
 }
-

@@ -25,69 +25,58 @@ import nilsl.processing.lib.txt.textproviders.SentenceProvider;
 
 public class RandomPos1 extends ViewerApplet {
 
-
 	private static final long serialVersionUID = 1L;
 	private RandomPosDrawer drawer;
 
-	
-	public void setup() {	
-		
+	public void setup() {
+
 		RandomDrawerInfo info = new RandomDrawerInfo();
-		info.imgSizeX=150;
-		info.imgSizeY=150;
-		info.width=2000;
-		info.height=1500;
-		info.numPics=150;
-		info.repeatImages=true;
-		info.slant=radians(360);
-		
+		info.imgSizeX = 150;
+		info.imgSizeY = 150;
+		info.width = 2000;
+		info.height = 1500;
+		info.numPics = 150;
+		info.repeatImages = true;
+		info.slant = radians(360);
 
 		drawer = new RandomPosDrawer(info);
-		
-		ViewerAppletSettings settings = new ViewerAppletSettings("/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/",drawer);
-		settings.width=info.width;
-		settings.height=info.height;
+
+		ViewerAppletSettings settings = new ViewerAppletSettings(
+				"/Users/Nils/Documents/Kunst/Italo-Disco/Compositions/", drawer);
+		settings.width = info.width;
+		settings.height = info.height;
 		super.setup(settings);
-		
-		
-		
-		//drawer.imageEnhancers.add(new ProcessingFilterEnhancer(PShader.POSTERIZE,2));
-		
+
+		// drawer.imageEnhancers.add(new
+		// ProcessingFilterEnhancer(PShader.POSTERIZE,2));
+
 		List<FilterCommand> filters = new ArrayList<FilterCommand>();
-		
-		FilterableMultiImageProvider imageProvider=null;
-		
+
+		FilterableMultiImageProvider imageProvider = null;
+
 		try {
-			 imageProvider = new FilterableMultiImageProvider("/Users/Nils/Documents/Kunst/Italo-Disco/Material/Images/ItaloRecords/italorecords.dat");
-			imageProvider.setFilterProcessor(new FilterProcessor(new ArrayList<FilterCommand>()));
+			imageProvider = new FilterableMultiImageProvider(
+					"/Users/Nils/Documents/Kunst/Italo-Disco/Material/Images/ItaloRecords/italorecords.dat");
+			imageProvider.setFilterProcessor(new FilterProcessor(
+					new ArrayList<FilterCommand>()));
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		imageProvider.applyFilters();
-		
+
 		drawer.imageProvider = (ImageProvider) imageProvider;
 		drawer.parentApplet = this;
 
 		background(255);
-		
+
 	}
-	
+
 	@Override
-	public void draw()
-	{
+	public void draw() {
 		drawer.draw();
 		super.draw();
-		//noLoop();
+		// noLoop();
 	}
 
-
-	
-
-	
-
-	
-	
-
 }
-

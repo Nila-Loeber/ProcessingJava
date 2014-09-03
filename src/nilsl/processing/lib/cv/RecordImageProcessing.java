@@ -26,8 +26,7 @@ public class RecordImageProcessing {
 	static final Logger logger = LogManager
 			.getLogger(RecordImageProcessing.class.getPackage().getName());
 
-	static public boolean isLabel(NImage nimage) { 
-													
+	static public boolean isLabel(NImage nimage) {
 
 		if (nimage instanceof RecordImage
 				&& ((RecordImage) nimage).isLabel != null) // isLabel is

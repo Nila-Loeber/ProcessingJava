@@ -1,4 +1,4 @@
-package nilsl.processing.lib.twodim.imageproviders.random;
+package nilsl.processing.lib.twodim.imageproviders.generators;
 
 public class GeneratorProviderInfo {
 	public int seed;

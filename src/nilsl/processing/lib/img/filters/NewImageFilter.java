@@ -6,8 +6,6 @@ import nilsl.processing.lib.img.NImage;
 
 public class NewImageFilter implements FilterCommand {
 
-	
-	
 	private int pos;
 
 	public NewImageFilter(int pos) {
@@ -16,8 +14,8 @@ public class NewImageFilter implements FilterCommand {
 
 	@Override
 	public void apply(List<? super NImage> images) {
-		int replacementImgPos = (int) (Math.random()*images.size());
-		images.set(pos, (NImage)images.get(replacementImgPos));
+		int replacementImgPos = (int) (Math.random() * images.size());
+		images.set(pos, (NImage) images.get(replacementImgPos));
 	}
 
 	@Override
