@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import processing.core.PApplet;
 import nilsl.processing.lib.applet.ViewerApplet;
 import nilsl.processing.lib.applet.NApplet;
+import nilsl.processing.lib.applet.mosaic.midi.ControlType;
 import nilsl.processing.lib.img.filters.CopyFilter;
 import nilsl.processing.lib.img.filters.NewImageFilter;
 import nilsl.processing.lib.img.filters.RandomizeFilter;
@@ -47,11 +48,16 @@ public abstract class MidifiedMosaicEditorApplet extends MosaicEditorApplet {
 					.format("controllerChange received. Channel: %d Number: %d Value: %d",
 							cc.channel, cc.number, cc.value));
 
-			if (sliderMappings.containsValue(cc.number)) {
-				int sliderIndex = getKeyByValue(sliderMappings, cc.number);
-				sliders[sliderIndex] = cc.value;
-				logger.trace("Moved slider " + sliderIndex);
-			} else {
+			ControlType ct = determineControlType(cc);
+
+			switch (ct) {
+			case SLIDER:
+				handleSlider(cc);
+				break;
+			case ROTARY:
+				handleRotary(cc);
+				break;
+			case OTHER:
 				switch (cc.number) {
 				case 25:
 					handleSave();
@@ -61,6 +67,26 @@ public abstract class MidifiedMosaicEditorApplet extends MosaicEditorApplet {
 				}
 			}
 			handleReInit();
+		}
+
+		private void handleRotary(ControlChange cc) {
+			int knobIndex = getKeyByValue(rotaryKnobMappings, cc.number);
+			if (cc.value==1) rotaryKnobs[knobIndex]++;
+			if (cc.value==127) rotaryKnobs[knobIndex]--;
+			logger.trace(String.format("Moved rotary knob %d. New Value: %d.",knobIndex,rotaryKnobs[knobIndex]));
+			
+		}
+
+		private void handleSlider(ControlChange cc) {
+			int sliderIndex = getKeyByValue(sliderMappings, cc.number);
+			sliders[sliderIndex] = cc.value;
+			logger.trace("Moved slider " + sliderIndex);
+		}
+
+		private ControlType determineControlType(ControlChange cc) {
+			if (sliderMappings.containsValue(cc.number)) return ControlType.SLIDER;
+			if (rotaryKnobMappings.containsValue(cc.number)) return ControlType.ROTARY;
+			return ControlType.OTHER;
 		}
 	};
 
@@ -75,6 +101,9 @@ public abstract class MidifiedMosaicEditorApplet extends MosaicEditorApplet {
 	protected int[] sliders = new int[8];
 	private HashMap<Integer, Integer> sliderMappings;
 
+	protected int[] rotaryKnobs = new int[8];
+	private HashMap<Integer, Integer> rotaryKnobMappings;
+
 	static final Logger logger = LogManager
 			.getLogger(MidifiedMosaicEditorApplet.class.getPackage().getName());
 
@@ -84,10 +113,24 @@ public abstract class MidifiedMosaicEditorApplet extends MosaicEditorApplet {
 		midiBus = new MidiBus((PApplet) this, 0, 0);
 
 		setupControllerMappings();
+		setupRotaryKnobMappings();
 
 		midiBus.addMidiListener(midiListener);
 
 		super.setup(settings);
+	}
+
+	private void setupRotaryKnobMappings() {
+		rotaryKnobMappings = new HashMap<Integer, Integer>();
+		rotaryKnobMappings.put(0, 106);
+		rotaryKnobMappings.put(1, 102);
+		rotaryKnobMappings.put(2, 107);
+		rotaryKnobMappings.put(3, 103);
+		rotaryKnobMappings.put(4, 108);
+		rotaryKnobMappings.put(5, 104);
+		rotaryKnobMappings.put(6, 109);
+		rotaryKnobMappings.put(7, 105);
+
 	}
 
 	private void setupControllerMappings() {
